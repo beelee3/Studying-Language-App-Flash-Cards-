@@ -1,0 +1,55 @@
+Dictionary.js 
+    - a dictionary will be created for each topic ex. hiragana/katakana/vocab
+{
+    -Class of Character
+    -romaji
+        -how the character is written
+    -pronunciation
+        -how to say the character
+    -imgSrc
+        -file path to access the image
+            ex. ../pictures/hiragana/${romaji}.png
+    -type
+        -hiragana or katakana
+
+    -Dictionary
+        -the key will be the romaji
+        -type
+            -will it be hiragana/katakana/vocab
+
+}
+
+
+Read.js
+    //scanFiles()
+        -will scan through each file in pictures folder
+            -and add them into the dictionary
+                -ideally will only add new imgs to the dictionary
+
+        *FILE SCAN*
+            -naming convention (when naming the image files)
+                ex. ka-ka-h.png
+                    ex. {romaji}-{pronunciation}-{type}.png
+                        -{type}
+                            -h = hiragana
+                            -k = katakana
+                            -v = vocab
+        
+        *ACCESSING IMAGE*
+            -using dictionary
+                -concatenate values in the dictionary
+                    ex. `../pictures/${dicHiragana.type}${dicHiragana[key].romaji}-${dicHiragana[key].pronunciation}-${dicHiragana[key].type}.png`;
+
+
+
+    //init()
+        -when first initializing the app 
+            -it will grab values{romaji} from Dictionary.txt which will have all the Keys of the dictionary,
+                - and put them into an array to be used to access the dictionary
+                    -ex 
+        
+Write.js
+    -will save the dictionary into a text file
+        -ex. DictHiragana.txt
+    -will also save the keys into a seperate textfile
+        -ex. Hiragana.txt
