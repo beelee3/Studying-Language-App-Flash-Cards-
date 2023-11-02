@@ -1,0 +1,9 @@
+.box {
+    display: flex;
+    justify-content: center;
+  }
+
+.box > h1{
+    text-align: center;
+}
+
