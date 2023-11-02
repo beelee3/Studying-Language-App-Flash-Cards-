@@ -11,3 +11,6 @@ var dictKata = new Dictionary("katakana");
 dictKata.add("ka","ka","k");
 dictKata.display();
 dictKata.readImgFromFile();
+
+dicHira.writeDictToFile();
+dictKata.writeDictToFile();

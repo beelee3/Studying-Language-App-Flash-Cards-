@@ -16,7 +16,8 @@ Dictionary.js
         -the key will be the romaji
         -type
             -will it be hiragana/katakana/vocab
-
+        -sorting the dictionary can be done with putting the keys into an array and sorting them
+            -these can also be saved into a text file
 }
 
 
@@ -50,6 +51,7 @@ Read.js
         
 Write.js
     -will save the dictionary into a text file
+        -will save the key:value pairs into a a text file
         -ex. DictHiragana.txt
     -will also save the keys into a seperate textfile
         -ex. Hiragana.txt

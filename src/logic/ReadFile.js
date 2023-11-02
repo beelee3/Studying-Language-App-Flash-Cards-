@@ -10,7 +10,8 @@ export function scanFiles(dir, files = []) {
     return files
   }
 
+
 export function readTextFile(){
-    
+
 }
 

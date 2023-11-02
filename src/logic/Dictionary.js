@@ -1,4 +1,6 @@
 import {scanFiles} from "./ReadFile.js";
+import { writeToTextFile } from "./WriteFile.js";
+
 
 class Character{
     constructor(romaji,pronunciation,type){
@@ -43,7 +45,18 @@ export class Dictionary{
             console.log(`images can be accessed through ${this.imgSrc}/${this.Dictionary[key].romaji}-${this.Dictionary[key].pronunciation}-${this.Dictionary[key].type}.png`);
         }
     }
-    //writeToFile()
+    
+    //writeDictionaryToFile() //all keys:value pairs put into a text file
+    writeDictToFile(){
+        // let stringFormat = "this is dummy text";
+        for(let key in this.Dictionary){
+            let stringFormat = `${this.Dictionary[key].romaji} ${this.Dictionary[key].pronunciation} ${this.Dictionary[key].type}`;
+            writeToTextFile(this.filePath,stringFormat);
+        }
+    }
+
+    //writeKeysToFile() //keys of the dictionary
+
     //readFromFile()
 
     //create finish making readFromTextFile
