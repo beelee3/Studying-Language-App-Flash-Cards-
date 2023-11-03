@@ -11,7 +11,49 @@ export function scanFiles(dir, files = []) {
   }
 
 
-export function readTextFile(){
+export function breakTextFileIntoLines(filePath){
+  var arr = fs
+              .readFileSync(filePath)
+              .toString("utf-8")
+              .split(`\n`);
+  console.log(` BTFIL: ${arr}`);
+  return arr;
+}
+
+
+//returns an array of keys from the text file
+export function getKeysFromTextFile(filePath){
+    var arr = breakTextFileIntoLines(filePath);
+    var keys = [];
+    for(var i = 0; i < arr.length; i++){
+      var extract = [];
+      extract = arr[i].split(`\n`);
+      keys.push(extract[0]);
+    }
+    return keys;
+}
+
+//returns array of keys from the img src
+export function getKeysFromImgSrc(imgFilePath){
+    var arr = scanFiles(imgFilePath);
+    var keys = [];
+    for(var i = 0; i < arr.length; i++){
+      var extract = [];
+      extract = arr[i].split("-");
+      keys.push(extract[0]);
+    }
+    return keys;
+}
+
+export function getDictFromFile(){
 
 }
 
+export function getDictFromImage(imgFilePath){
+  var arr = scanFiles(imgFilePath);
+  var dictData = [];
+  for(var i = 0; i < arr.length; i++){
+    dictData.push(arr[i].replaceAll("-"," ").replaceAll(".png",""));
+  }
+  return dictData;
+}

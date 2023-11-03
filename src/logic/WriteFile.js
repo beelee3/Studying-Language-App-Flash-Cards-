@@ -17,3 +17,11 @@ export function writeToTextFile(filePath, stringFormat="this is dummy text"){
         });
     }
 }
+
+export function writeToFile(filePath, stringFormat="this is dummy text"){
+    fs.writeFileSync(filePath,stringFormat,(err) =>{
+        //in case of an error throw err.
+        if(err) throw err;
+    });
+
+}

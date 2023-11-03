@@ -21,7 +21,7 @@ Dictionary.js
 }
 
 
-Read.js
+Read.js (readImageFile -> format ImgFileName -> write formatted ImgFileName into TextFile)
     //scanFiles()
         -will scan through each file in pictures folder
             -and add them into the dictionary
