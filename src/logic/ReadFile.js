@@ -34,6 +34,13 @@ export function getKeysFromTextFile(filePath){
     return keys;
 }
 
+//returns array of dictionary data
+export function getDictFromTextFile(dictFilePath){
+  var dicData = breakTextFileIntoLines(dictFilePath);
+  return dicData;
+}
+
+
 //returns array of keys from the img src
 export function getKeysFromImgSrc(imgFilePath){
     var arr = scanFiles(imgFilePath);
@@ -46,22 +53,21 @@ export function getKeysFromImgSrc(imgFilePath){
     return keys;
 }
 
-export function getDictFromFile(){
 
-}
 
+//grabs formatted names from images and produces it into an array format
 export function getDictFromImage(imgFilePath){
-  var arr = scanFiles(imgFilePath);
-  var dictData = [];
-  for(var i = 0; i < arr.length; i++){
-    dictData.push(arr[i].replaceAll("-"," ").replaceAll(".png",""));
-  }
-  return dictData;
+    var arr = scanFiles(imgFilePath);
+    var dictData = [];
+    for(var i = 0; i < arr.length; i++){
+      dictData.push(arr[i].replaceAll("-"," ").replaceAll(".png",""));
+    }
+    return dictData;
 }
 
 export function doesFileExist(filePath){
-  if(fs.existsSync(filePath)){
-      return true;
-  }
-  return false;
+    if(fs.existsSync(filePath)){
+        return true;
+    }
+    return false;
 }

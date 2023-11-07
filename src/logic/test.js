@@ -13,8 +13,14 @@ dictKata.display();
 dictKata.readImgSrc();
 
 
-dicHira.setDictFromImgSrc();
-dictKata.setDictFromImgSrc();
+//run this as the init
+// dicHira.setDictFromImgSrc();
+// dictKata.setDictFromImgSrc();
+
+
+dicHira.setDictFromTextFile();
+dictKata.setDictFromTextFile();
+
 
 dicHira.writeDictToFile();
 dictKata.writeDictToFile();

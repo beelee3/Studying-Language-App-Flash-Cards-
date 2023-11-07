@@ -1,4 +1,4 @@
-import {getKeysFromTextFile, getKeysFromImgSrc, scanFiles, getDictFromImage, doesFileExist} from "./ReadFile.js";
+import {getKeysFromTextFile, getDictFromImage, doesFileExist, getDictFromTextFile} from "./ReadFile.js";
 import { writeToFile, writeToTextFile } from "./WriteFile.js";
 
 
@@ -75,7 +75,7 @@ export class Dictionary{
 
     //create finish making readFromTextFile
     readDictFromFile(){
-        const fileArray = scanFiles(this.filePath);
+        const fileArray = getDictFromTextFile(this.filePath);
         console.log(fileArray);
         return fileArray;
     }
@@ -94,6 +94,15 @@ export class Dictionary{
             var splitArr = [];
             splitArr = imgArray[i].split(" ");
             this.add(splitArr[0],splitArr[1],splitArr[2]);
+        }
+    }
+
+    setDictFromTextFile(){
+        const textArray = this.readDictFromFile();
+        for(var i = 0; i < textArray.length; i++){
+            var splitArr = [];
+            splitArr = textArray[i].split(" ");
+            this.add(splitArr[0], splitArr[1], splitArr[2]);
         }
     }
 
