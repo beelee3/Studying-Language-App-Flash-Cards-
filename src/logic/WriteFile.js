@@ -2,6 +2,7 @@ import fs from "fs";
 import { getFileSize } from "./getFileSize.js";
 
 
+//write to file if it doesnt exist/is empty  or append to the file
 export function writeToTextFile(filePath, stringFormat="this is dummy text"){
     //if the amount returned is 0, writeFileSync
     if(getFileSize(filePath) == 0){
@@ -25,3 +26,4 @@ export function writeToFile(filePath, stringFormat="this is dummy text"){
     });
 
 }
+

@@ -1,5 +1,5 @@
-import {getKeysFromTextFile, getKeysFromImgSrc, scanFiles, getDictFromImage} from "./ReadFile.js";
-import { writeToTextFile } from "./WriteFile.js";
+import {getKeysFromTextFile, getKeysFromImgSrc, scanFiles, getDictFromImage, doesFileExist} from "./ReadFile.js";
+import { writeToFile, writeToTextFile } from "./WriteFile.js";
 
 
 class Character{
@@ -24,7 +24,7 @@ export class Dictionary{
         this.fileName = `dict${this.type}.txt`;
         this.filePath = `./src/logic/textFiles/${this.fileName}`;
         
-        this.keyName = `KEY${this.type}`;
+        this.keyName = `KEY${this.type}.txt`;
         this.keyPath = `./src/logic/textFiles/${this.keyName}`;
         this.keyArr  = [];
 
@@ -54,27 +54,20 @@ export class Dictionary{
     //writeDictionaryToFile() //all keys:value pairs put into a text file
     writeDictToFile(){
         for(let key in this.Dictionary){
-            let stringFormat = `${this.Dictionary[key].romaji} ${this.Dictionary[key].pronunciation} ${this.Dictionary[key].type}`;
-            
-            writeToTextFile(this.filePath,stringFormat);
+            if(this.doesKeyExist(key,"text")==false){
+                let stringFormat = `${this.Dictionary[key].romaji} ${this.Dictionary[key].pronunciation} ${this.Dictionary[key].type}`;
+                writeToTextFile(this.filePath,stringFormat);
+            }
         }
     }
 
     writeKeysToFile(){ //grab the img files and write the keys into textfile
-        var keys = getKeysFromImgSrc(this.imgSrc);
-        for(var i = 0; i < keys.length; i++){
-            let stringFormat = keys[i];
-            writeToTextFile(this.keyPath,stringFormat)
-
-
-            // if(!this.doesKeyExist(key[i])){
-            //     writeToTextFile(this.keyPath,stringFormat)
-            // }
-            // else{
-            //     console.log(`${key} already exists in the dictionary`);
-            // }
-        }
-        console.log(keys);
+        for(let k in this.Dictionary){
+            if(this.doesKeyExist(k,"text") == false){
+                let stringFormat = k;
+                writeToTextFile(this.keyPath, stringFormat)
+            }
+        }        
     }
 
 
@@ -92,13 +85,6 @@ export class Dictionary{
         const imgArray = getDictFromImage(this.imgSrc);
         console.log(`readImgSrc: ${imgArray}`);
 
-        // for(var i = 0; i < imgArray.length; i++){
-        //     var splitArr=[];
-        //     //console.log(`SplitImgSrc: ${imgArray[i].split(" ")}`);
-        //     splitArr = imgArray[i].split(" ");
-        //     console.log(`${splitArr[0]} / ${splitArr[1]} / ${splitArr[2]} `);
-        // }
-   
         return imgArray;
     }
 
@@ -112,17 +98,34 @@ export class Dictionary{
     }
 
     //this will search  to see if key exists in textFile
-    doesKeyExist(key){
+    doesKeyExist(key, name){
+       switch(name){
 
-
-        // if(!this.Dictionary[key]){
-        //     console.log(`${key} doesn't exist in the ${this.type} dictionary`);
-        //     return false;
-        // }
-        // else{
-        //     console.log(`${key} does exist in the ${this.type} dictionary`);
-        //     return true;
-        // }
+        case "dict":
+                if(!this.Dictionary[key]){
+                    console.log(`${key} doesn't exist in the ${this.type} dictionary`);
+                    return false;
+                }
+                else{
+                    console.log(`${key} does exist in the ${this.type} dictionary`);
+                    return true;
+                }
+        case "text":
+                if(doesFileExist(this.keyPath) == false){
+                    return false;
+                }
+                let keyArr = getKeysFromTextFile(this.keyPath);
+                for(let i = 0; i < keyArr.length; i++){
+                    if(keyArr[i] == key){
+                        //key exists
+                        // console.log(`text ${key} does exist`);
+                        return true;
+                    }
+                }
+                return false;
+        }
+   
+        
     }
 
     initialize(){

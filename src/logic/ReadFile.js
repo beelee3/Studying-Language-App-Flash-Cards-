@@ -7,6 +7,7 @@ export function scanFiles(dir, files = []) {
     for (const file of fileList) {
       files.push(file);
     }
+    //returns an array of files form the Folder
     return files
   }
 
@@ -16,7 +17,7 @@ export function breakTextFileIntoLines(filePath){
               .readFileSync(filePath)
               .toString("utf-8")
               .split(`\n`);
-  console.log(` BTFIL: ${arr}`);
+  // console.log(` BTFIL: ${arr}`);
   return arr;
 }
 
@@ -56,4 +57,11 @@ export function getDictFromImage(imgFilePath){
     dictData.push(arr[i].replaceAll("-"," ").replaceAll(".png",""));
   }
   return dictData;
+}
+
+export function doesFileExist(filePath){
+  if(fs.existsSync(filePath)){
+      return true;
+  }
+  return false;
 }
