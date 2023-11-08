@@ -78,23 +78,6 @@ export class Dictionary{
         }        
     }
 
-
-    //readFromFile()
-
-    //create finish making readFromTextFile
-    // readDictFromFile(){
-    //     const fileArray = getDictFromTextFile(this.filePath);
-    //     console.log(fileArray);
-    //     return fileArray;
-    // }
-
-    //returns array of Img
-    // readDictFromImage(){
-    //     const imgArray = getDictFromImage(this.imgSrc);
-    //     // console.log(`readDictFromImage: ${imgArray}`);
-    //     return imgArray;
-    // }
-
     //grab the data from img file and adds it to the dictionary
     setDictFromImgSrc(){
         const imgArray = getDictFromImage(this.imgSrc);
