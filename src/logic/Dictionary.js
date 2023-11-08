@@ -1,5 +1,6 @@
-import {getKeysFromTextFile, getDictFromImage, doesFileExist, getDictFromTextFile} from "./ReadFile.js";
+import {getKeysFromTextFile, getDictFromImage, doesFileExist, getDictFromTextFile, getInitFromTextFile, searchEachLineTextFile} from "./ReadFile.js";
 import { writeToFile, writeToTextFile } from "./WriteFile.js";
+import { getFileSize } from "./getFileSize.js";
 
 
 class Character{
@@ -19,8 +20,10 @@ export class Dictionary{
     //type = hiragana/katakana/vocab
     constructor(type){
         this.Dictionary = {};
+        
         if(type != "hiragana" && type != "katakana" && type != "vocab") type = "invalid";
         this.type = type;
+
         this.fileName = `dict${this.type}.txt`;
         this.filePath = `./src/logic/textFiles/${this.fileName}`;
         
@@ -30,7 +33,12 @@ export class Dictionary{
 
         this.imgSrc = `./src/pictures/${this.type}`;
 
+        this.initName=`${this.type}_init.txt`;
+        this.initPath = `./src/logic/init/${this.initName}`;
 
+        this.init = {
+            "initFromImg": null,
+        }
     }
 
     //add(romaji,pronunciation,type)
@@ -41,7 +49,6 @@ export class Dictionary{
         }
         this.Dictionary[newCharacter.romaji] = newCharacter;
     }
-    //search()
     //display()
     display(){
         for (var key in this.Dictionary){
@@ -56,6 +63,7 @@ export class Dictionary{
         for(let key in this.Dictionary){
             if(this.doesKeyExist(key,"text")==false){
                 let stringFormat = `${this.Dictionary[key].romaji} ${this.Dictionary[key].pronunciation} ${this.Dictionary[key].type}`;
+                console.log(`writing dict to file: ${stringFormat}`);
                 writeToTextFile(this.filePath,stringFormat);
             }
         }
@@ -74,22 +82,22 @@ export class Dictionary{
     //readFromFile()
 
     //create finish making readFromTextFile
-    readDictFromFile(){
-        const fileArray = getDictFromTextFile(this.filePath);
-        console.log(fileArray);
-        return fileArray;
-    }
+    // readDictFromFile(){
+    //     const fileArray = getDictFromTextFile(this.filePath);
+    //     console.log(fileArray);
+    //     return fileArray;
+    // }
 
     //returns array of Img
-    readImgSrc(){
-        const imgArray = getDictFromImage(this.imgSrc);
-        console.log(`readImgSrc: ${imgArray}`);
+    // readDictFromImage(){
+    //     const imgArray = getDictFromImage(this.imgSrc);
+    //     // console.log(`readDictFromImage: ${imgArray}`);
+    //     return imgArray;
+    // }
 
-        return imgArray;
-    }
-
+    //grab the data from img file and adds it to the dictionary
     setDictFromImgSrc(){
-        const imgArray = this.readImgSrc();
+        const imgArray = getDictFromImage(this.imgSrc);
         for(var i = 0; i < imgArray.length; i++){
             var splitArr = [];
             splitArr = imgArray[i].split(" ");
@@ -97,8 +105,9 @@ export class Dictionary{
         }
     }
 
+    //grab the data from textFile and adds it to the dictionary
     setDictFromTextFile(){
-        const textArray = this.readDictFromFile();
+        const textArray = getDictFromTextFile(this.filePath);
         for(var i = 0; i < textArray.length; i++){
             var splitArr = [];
             splitArr = textArray[i].split(" ");
@@ -137,21 +146,61 @@ export class Dictionary{
         
     }
 
+    //init functions
+    readInit(){
+        if(doesFileExist(this.initPath) == false /*getFileSize(this.initPath) > 0 */){
+            return false;
+        }
+        const initArray = getInitFromTextFile(this.initPath);
+        for(let i = 0; i < initArray.length; i++){
+            if(initArray[i]==`initFromImg true`){
+                this.init.initFromImg = true;
+            }
+            else{
+                this.init.initFromImg = false;
+            }
+            console.log(`read init: ${this.init.initFromImg}`);
+
+
+        }
+        
+    }
+    writeInit(){
+        if(doesFileExist(this.initPath) == true && getFileSize(this.initPath) == 0){
+            return true;
+        }
+            //this is a way to access a javascript object
+        // let s1 = `initFromImg`;
+        // let stringFormat = `${this.init[s1]}`;
+        
+        let stringFormat = `initFromImg true`;
+        if(searchEachLineTextFile(this.initPath,stringFormat)==false){
+            this.init.initFromImg = true;
+            writeToTextFile(this.initPath, stringFormat);
+            console.log(`Init write: ${stringFormat}`);
+        }
+        
+        //console.log(stringFormat);
+    }
+    overrideInit(parameter,value){
+
+    }
+
     initialize(){
-        //
+        this.readInit();
+        this.writeInit();
+
+        if(this.init.initFromImg == true){
+            this.setDictFromImgSrc();
+            this.writeDictToFile();
+            this.writeKeysToFile();
+            
+        }
+        else{
+            this.setDictFromTextFile();
+
+        }
     }
 }
 
 
-
-// var dicHira = new Dictionary("hiragana");
-// dicHira.add("ka","ka","h");
-// dicHira.display();
-// dicHira.readImgFromFile();
-
-// console.log("//////////////////");
-
-// var dictKata = new Dictionary("katakana");
-// dictKata.add("ka","ka","k");
-// dictKata.display();
-// dictKata.readImgFromFile();
