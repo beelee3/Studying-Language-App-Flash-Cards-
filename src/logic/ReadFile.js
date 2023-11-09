@@ -45,8 +45,11 @@ export function getDictFromTextFile(dictFilePath){
 
 //returns array of init data
 export function getInitFromTextFile(initFilePath){
-  const initData = breakTextFileIntoLines(initFilePath);
-  return initData;
+  if(doesFileExist(initFilePath)==false){
+    return false;
+  }
+  var stringFormat = fs.readFileSync(initFilePath,'utf-8');
+  return stringFormat;
 }
 
 

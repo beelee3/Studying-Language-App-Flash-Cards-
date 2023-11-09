@@ -35,9 +35,8 @@ export class Dictionary{
 
         this.initName=`${this.type}_init.txt`;
         this.initPath = `./src/logic/init/${this.initName}`;
-
         this.init = {
-            "initFromImg": "true",
+            "initFromImg": true,
         }
     }
 
@@ -131,37 +130,27 @@ export class Dictionary{
 
     //init functions
     readInit(){
-        if(doesFileExist(this.initPath) == false /*getFileSize(this.initPath) > 0 */){
-            return false;
-        }
-        const initArray = getInitFromTextFile(this.initPath);
-        for(let i = 0; i < initArray.length; i++){
-            if(initArray[i]==`initFromImg true`){
-                this.init.initFromImg = true;
-            }
-            else{
-                this.init.initFromImg = false;
-            }
-        }
-        console.log(`read init: ${this.init.initFromImg}`);
+        var nInit = JSON.parse(getInitFromTextFile(this.initPath));
+        //parse textfile settings to this.init
+        this.init.initFromImg = nInit.initFromImg;
+        console.log(`read init from file`);
+        console.log(nInit);
         
     }
     writeInit(){
         if(doesFileExist(this.initPath) == true && getFileSize(this.initPath) == 0){
             return true;
         }
-            //this is a way to access a javascript object
-        // let s1 = `initFromImg`;
-        // let stringFormat = `${this.init[s1]}`;
         
-        let stringFormat = `initFromImg true`;
-        if(searchEachLineTextFile(this.initPath,stringFormat)==false){
-            this.init.initFromImg = true;
-            writeToTextFile(this.initPath, stringFormat);
-            console.log(`Init write: ${stringFormat}`);
-        }
-        
-        //console.log(stringFormat);
+        console.log(this.init);
+        var stringFormat = JSON.stringify(this.init, null, 2);
+        writeToFile(this.initPath,stringFormat,err=>{
+            if(err){
+                console.log(err);
+            }
+        })
+
+        console.log(`writing init file to text`);
     }
 
     overrideInit(){
@@ -172,11 +161,13 @@ export class Dictionary{
                 console.log(err)
             }
         });
-        
+
         console.log(stringFormat);
     }
 
     initialize(){
+        console.log(`//////////////////////`);
+        console.log(`start`,this.init);
         this.readInit();
         this.writeInit();
 
@@ -193,6 +184,8 @@ export class Dictionary{
             this.setDictFromTextFile();
             console.log(`init from text file: わたしわしのぶ`);
         }
+        console.log(`end`,this.init);
+        console.log(`//////////////////////`);
     }
 }
 
