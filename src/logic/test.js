@@ -1,15 +1,17 @@
 import {Dictionary} from "./Dictionary.js";
 
 var dicHira = new Dictionary("hiragana");
-var dictKata = new Dictionary("katakana");
+var dicKata = new Dictionary("katakana");
 
 
 dicHira.initialize();
 dicHira.display();
 
-dictKata.initialize();
-dictKata.display();
+dicKata.initialize();
+dicKata.display();
 
 
+dicHira.randomSelectKey();
+dicKata.randomSelectKey();
 
 

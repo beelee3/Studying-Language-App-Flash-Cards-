@@ -95,7 +95,19 @@ export class Dictionary{
             this.add(splitArr[0], splitArr[1], splitArr[2]);
         }
     }
-
+    setKeysFromTextFile(){
+        const kArray = getKeysFromTextFile(this.keyPath);
+        for(let i = 0; i<kArray.length; i++){
+            this.keyArr.push(kArray[i]);
+        }
+        console.log(`set keys from text file: ${this.keyArr}`);
+    }
+    randomSelectKey(){
+        let rng = Math.floor(Math.random() * (this.keyArr.length-1));
+        let rngKey = this.keyArr[rng];
+        console.log(rngKey);
+        // console.log(`Romaji: [${this.Dictionary[rngKey].romaji}], Pronunciation: [${this.Dictionary[rngKey].pronunciation}], Type: [${this.Dictionary[rngKey].type}]`);
+    }
     //this will search  to see if key exists in textFile
     doesKeyExist(key, name){
        switch(name){
@@ -171,11 +183,15 @@ export class Dictionary{
         }
         else{
             this.setDictFromTextFile();
+            this.setKeysFromTextFile();
             console.log(`init from text file: わたしわしのぶ`);
         }
         console.log(`end`,this.init);
         console.log(`//////////////////////`);
     }
+
+
+
 }
 
 
