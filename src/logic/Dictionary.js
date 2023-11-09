@@ -37,7 +37,7 @@ export class Dictionary{
         this.initPath = `./src/logic/init/${this.initName}`;
 
         this.init = {
-            "initFromImg": null,
+            "initFromImg": "true",
         }
     }
 
@@ -142,10 +142,8 @@ export class Dictionary{
             else{
                 this.init.initFromImg = false;
             }
-            console.log(`read init: ${this.init.initFromImg}`);
-
-
         }
+        console.log(`read init: ${this.init.initFromImg}`);
         
     }
     writeInit(){
@@ -165,8 +163,17 @@ export class Dictionary{
         
         //console.log(stringFormat);
     }
-    overrideInit(parameter,value){
 
+    overrideInit(){
+        let stringFormat = JSON.stringify(this.init,null,2)
+
+        writeToFile(`./src/logic/init/textInit.txt`,stringFormat, err =>{
+            if(err){
+                console.log(err)
+            }
+        });
+        
+        console.log(stringFormat);
     }
 
     initialize(){
@@ -177,11 +184,14 @@ export class Dictionary{
             this.setDictFromImgSrc();
             this.writeDictToFile();
             this.writeKeysToFile();
-            
+            this.init.initFromImg == false;
+            console.log(`init from image complete`);
+            this.overrideInit();
+
         }
         else{
             this.setDictFromTextFile();
-
+            console.log(`init from text file: わたしわしのぶ`);
         }
     }
 }
