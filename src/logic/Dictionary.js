@@ -2,7 +2,6 @@ import {getKeysFromTextFile, getDictFromImage, doesFileExist, getDictFromTextFil
 import { writeToFile, writeToTextFile } from "./WriteFile.js";
 import { getFileSize } from "./getFileSize.js";
 
-
 class Character{
     constructor(romaji,pronunciation,type){
         //how to character is spelt
@@ -14,7 +13,6 @@ class Character{
 
     }
 }
-
 
 export class Dictionary{
     //type = hiragana/katakana/vocab
@@ -37,7 +35,6 @@ export class Dictionary{
         this.initPath = `./src/logic/init/${this.initName}`;
         this.init = {
             "initFromImg": true,
-            "test": "yes",
         }
     }
 
@@ -51,6 +48,7 @@ export class Dictionary{
     }
     //display()
     display(){
+        console.log(`////////////////${this.type} dictionary//////////////////////`);
         for (var key in this.Dictionary){
             // console.log(`this Dict name: ${this.fileName}`);
             console.log(`Romaji: [${this.Dictionary[key].romaji}], Pronunciation: [${this.Dictionary[key].pronunciation}], Type: [${this.Dictionary[key].type}]`);
@@ -137,8 +135,8 @@ export class Dictionary{
         var nInit = JSON.parse(getInitFromTextFile(this.initPath));
         //parse textfile settings to this.init
         this.init.initFromImg = nInit.initFromImg;
-        console.log(`read init from file`);
-        console.log(nInit);
+        // console.log(`read init from file`);
+        // console.log(nInit);
         
     }
     writeInit(){
@@ -146,7 +144,7 @@ export class Dictionary{
             return true;
         }
         
-        console.log(this.init);
+        // console.log(this.init);
         var stringFormat = JSON.stringify(this.init, null, 2);
         writeToFile(this.initPath,stringFormat,err=>{
             if(err){
@@ -154,19 +152,7 @@ export class Dictionary{
             }
         });
 
-        console.log(`writing init file to text`);
-    }
-
-    overrideInit(){
-        let stringFormat = JSON.stringify(this.init,null,2)
-
-        writeToFile(`./src/logic/init/textInit.txt`,stringFormat, err =>{
-            if(err){
-                console.log(err)
-            }
-        });
-
-        console.log(stringFormat);
+        // console.log(`writing init file to text`);
     }
 
     initialize(){
@@ -180,9 +166,8 @@ export class Dictionary{
             this.writeDictToFile();
             this.writeKeysToFile();
             this.init.initFromImg = false;
-            console.log(`init from image complete`);
             this.writeInit();
-
+            console.log(`init from image complete`);
         }
         else{
             this.setDictFromTextFile();
