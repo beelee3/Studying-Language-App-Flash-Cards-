@@ -37,6 +37,7 @@ export class Dictionary{
         this.initPath = `./src/logic/init/${this.initName}`;
         this.init = {
             "initFromImg": true,
+            "test": "yes",
         }
     }
 
@@ -130,6 +131,9 @@ export class Dictionary{
 
     //init functions
     readInit(){
+        if(doesFileExist(this.initPath)==false){
+            return false;
+          }
         var nInit = JSON.parse(getInitFromTextFile(this.initPath));
         //parse textfile settings to this.init
         this.init.initFromImg = nInit.initFromImg;
@@ -148,7 +152,7 @@ export class Dictionary{
             if(err){
                 console.log(err);
             }
-        })
+        });
 
         console.log(`writing init file to text`);
     }
@@ -177,7 +181,7 @@ export class Dictionary{
             this.writeKeysToFile();
             this.init.initFromImg = false;
             console.log(`init from image complete`);
-            this.overrideInit();
+            this.writeInit();
 
         }
         else{
