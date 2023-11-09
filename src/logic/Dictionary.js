@@ -175,7 +175,7 @@ export class Dictionary{
             this.setDictFromImgSrc();
             this.writeDictToFile();
             this.writeKeysToFile();
-            this.init.initFromImg == false;
+            this.init.initFromImg = false;
             console.log(`init from image complete`);
             this.overrideInit();
 
