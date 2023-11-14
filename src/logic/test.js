@@ -11,7 +11,7 @@ dicKata.initialize();
 dicKata.display();
 
 
-dicHira.randomSelectKey();
-dicKata.randomSelectKey();
+// dicHira.randomSelectKey();
+// dicKata.randomSelectKey();
 
 

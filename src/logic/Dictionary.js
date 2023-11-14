@@ -1,16 +1,16 @@
-import {getKeysFromTextFile, getDictFromImage, doesFileExist, getDictFromTextFile, getInitFromTextFile, searchEachLineTextFile} from "./ReadFile.js";
-import { writeToFile, writeToTextFile } from "./WriteFile.js";
+import {getKeysFromTextFile, getDictFromImage, doesFileExist, getDictFromTextFile, getInitFromTextFile, searchEachLineTextFile, splitJsonIntoCharacterArray} from "./ReadFile.js";
+import { writeToFile, writeToTextFile, writeToTextFile2 } from "./WriteFile.js";
 import { getFileSize } from "./getFileSize.js";
 
 class Character{
-    constructor(romaji,pronunciation,type){
+    constructor(romaji,pronunciation,type,notes="n/a"){
         //how to character is spelt
         this.romaji = romaji;
         //how to character is pronu
         this.pronunciation = pronunciation;
         if(type != "h" && type != "k" && type != "v") type = "invalid";
         this.type = type;
-
+        this.notes = notes;
     }
 }
 
@@ -31,6 +31,12 @@ export class Dictionary{
 
         this.imgSrc = `./src/pictures/${this.type}`;
 
+        //test vars
+        this.fileNameTest = `dict_${this.type}_Test.txt`;
+        this.filePathTest = `./src/logic/textFiles/${this.fileNameTest}`;
+        this.keyNameTest = `KEY_${this.type}_Test.txt`
+        this.keyPathTest =`./src/logic/textFiles/${this.keyNameTest}`;
+        
         this.initName=`${this.type}_init.txt`;
         this.initPath = `./src/logic/init/${this.initName}`;
         this.init = {
@@ -63,6 +69,9 @@ export class Dictionary{
                 let stringFormat = `${this.Dictionary[key].romaji} ${this.Dictionary[key].pronunciation} ${this.Dictionary[key].type}`;
                 console.log(`writing dict to file: ${stringFormat}`);
                 writeToTextFile(this.filePath,stringFormat);
+
+                stringFormat = JSON.stringify(this.Dictionary[key],null,2);
+                writeToTextFile2(this.filePathTest, stringFormat);
             }
         }
     }
@@ -88,6 +97,7 @@ export class Dictionary{
             if(this.doesKeyExist(splitArr[0],"text") == false && this.type.slice(0,1) == splitArr[2]){
                 this.add(splitArr[0],splitArr[1],splitArr[2]);
                 this.writeDictToFile();
+                this.writeKeysToFile();
             }
         }
            
@@ -110,6 +120,13 @@ export class Dictionary{
             var splitArr = [];
             splitArr = textArray[i].split(" ");
             this.add(splitArr[0], splitArr[1], splitArr[2]);
+        }
+    }
+
+    setDictFromTextFile2(){
+        const nCharacterArray = splitJsonIntoCharacterArray(this.filePathTest);
+        for(var i in nCharacterArray){
+            this.Dictionary[nCharacterArray[i].romaji] = nCharacterArray[i];
         }
     }
     setKeysFromTextFile(){
@@ -200,7 +217,8 @@ export class Dictionary{
             console.log(`init from image complete`);
         }
         else{
-            this.setDictFromTextFile();
+            // this.setDictFromTextFile();
+            this.setDictFromTextFile2();
             this.setKeysFromTextFile();
             this.scanAndWriteNewFiles();
             console.log(`init from text file: わたしわしのぶ`);

@@ -1,5 +1,5 @@
 import fs from "fs";
-
+const stringSplitter = `-`;
 
 // Recursive function to scan and get files
 export function scanFiles(dir, files = []) {
@@ -112,4 +112,27 @@ export function searchEachLineTextFile(filePath, phrase){
       }
     }
     return false;
+}
+
+/////////////////new stuff
+
+
+//splits the json text and parses it, and returns an array of objects(character)
+export function splitJsonIntoCharacterArray(filePath){
+  if(doesFileExist(filePath)==false){
+    return false;
+  }
+
+  var jsonArray = fs.readFileSync(filePath,'utf-8',(err)=>{
+    if(err){
+      console.log(err)
+    }
+  }).split(stringSplitter);
+
+  let nCharacterArray = []
+  for(let i in jsonArray){
+    nCharacterArray.push(JSON.parse(jsonArray[i]))
+  }
+
+  return nCharacterArray;
 }
