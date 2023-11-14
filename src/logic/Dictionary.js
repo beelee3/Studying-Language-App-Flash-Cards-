@@ -1,5 +1,5 @@
-import {getKeysFromTextFile, getDictFromImage, doesFileExist, getDictFromTextFile, getInitFromTextFile, searchEachLineTextFile, splitJsonIntoCharacterArray} from "./ReadFile.js";
-import { writeToFile, writeToTextFile, writeToTextFile2 } from "./WriteFile.js";
+import {getKeysFromTextFile, getDictFromImage, doesFileExist, getInitFromTextFile, splitJsonIntoCharacterArray} from "./ReadFile.js";
+import { writeToFile, writeToTextFile, writeObjectToFile } from "./WriteFile.js";
 import { getFileSize } from "./getFileSize.js";
 
 class Character{
@@ -32,11 +32,9 @@ export class Dictionary{
         this.imgSrc = `./src/pictures/${this.type}`;
 
         //test vars
-        this.fileNameTest = `dict_${this.type}_Test.txt`;
-        this.filePathTest = `./src/logic/textFiles/${this.fileNameTest}`;
-        this.keyNameTest = `KEY_${this.type}_Test.txt`
-        this.keyPathTest =`./src/logic/textFiles/${this.keyNameTest}`;
-        
+        // this.fileNameTest = `dict_${this.type}_Test.txt`;
+        // this.filePathTest = `./src/logic/textFiles/${this.fileNameTest}`;
+
         this.initName=`${this.type}_init.txt`;
         this.initPath = `./src/logic/init/${this.initName}`;
         this.init = {
@@ -66,12 +64,8 @@ export class Dictionary{
     writeDictToFile(){
         for(let key in this.Dictionary){
             if(this.doesKeyExist(key,"text")==false){
-                let stringFormat = `${this.Dictionary[key].romaji} ${this.Dictionary[key].pronunciation} ${this.Dictionary[key].type}`;
-                console.log(`writing dict to file: ${stringFormat}`);
-                writeToTextFile(this.filePath,stringFormat);
-
-                stringFormat = JSON.stringify(this.Dictionary[key],null,2);
-                writeToTextFile2(this.filePathTest, stringFormat);
+                let stringFormat = JSON.stringify(this.Dictionary[key],null,2);
+                writeObjectToFile(this.filePath, stringFormat);
             }
         }
     }
@@ -102,7 +96,6 @@ export class Dictionary{
         }
            
     }
-
     //grab the data from img file and adds it to the dictionary
     setDictFromImgSrc(){
         const imgArray = getDictFromImage(this.imgSrc);
@@ -115,20 +108,12 @@ export class Dictionary{
 
     //grab the data from textFile and adds it to the dictionary
     setDictFromTextFile(){
-        const textArray = getDictFromTextFile(this.filePath);
-        for(var i = 0; i < textArray.length; i++){
-            var splitArr = [];
-            splitArr = textArray[i].split(" ");
-            this.add(splitArr[0], splitArr[1], splitArr[2]);
-        }
-    }
-
-    setDictFromTextFile2(){
-        const nCharacterArray = splitJsonIntoCharacterArray(this.filePathTest);
+        const nCharacterArray = splitJsonIntoCharacterArray(this.filePath);
         for(var i in nCharacterArray){
             this.Dictionary[nCharacterArray[i].romaji] = nCharacterArray[i];
         }
     }
+
     setKeysFromTextFile(){
         const kArray = getKeysFromTextFile(this.keyPath);
         for(let i = 0; i<kArray.length; i++){
@@ -218,7 +203,7 @@ export class Dictionary{
         }
         else{
             // this.setDictFromTextFile();
-            this.setDictFromTextFile2();
+            this.setDictFromTextFile();
             this.setKeysFromTextFile();
             this.scanAndWriteNewFiles();
             console.log(`init from text file: わたしわしのぶ`);

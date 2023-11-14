@@ -37,32 +37,11 @@ export function getKeysFromTextFile(filePath){
     return keys;
 }
 
-//returns array of dictionary data
-export function getDictFromTextFile(dictFilePath){
-  const dicData = breakTextFileIntoLines(dictFilePath);
-  return dicData;
-}
-
 //returns array of init data
 export function getInitFromTextFile(initFilePath){
   var stringFormat = fs.readFileSync(initFilePath,'utf-8');
   return stringFormat;
 }
-
-
-//returns array of keys from the img src
-export function getKeysFromImgSrc(imgFilePath){
-    var arr = scanFiles(imgFilePath);
-    var keys = [];
-    for(var i = 0; i < arr.length; i++){
-      var extract = [];
-      extract = arr[i].split("-");
-      keys.push(extract[0]);
-    }
-    return keys;
-}
-
-
 
 //grabs formatted names from images and produces it into an array format
 export function getDictFromImage(imgFilePath){
@@ -84,55 +63,25 @@ export function doesFileExist(filePath){
     return false;
 }
 
-export function searchFirstWordInEachLineTextFile(filePath, word){
-    const arr = breakTextFileIntoLines(filePath);
-    lines = [];
-    for(let i = 0; i < arr.length; i++){
-      var extract = [];
-      extract = arr[i].split(" ");
-      if(extract[0] == word){
-        console.log(`${word} exists in the file!`);
-        return true;
-      }
-    }
-    return false;
-}
-
-//searches for a phrase in the text file 
-  //ex. "initFromImg true"
-export function searchEachLineTextFile(filePath, phrase){
-    if(doesFileExist(filePath)==false){
-      return false;
-    }
-    const arr = breakTextFileIntoLines(filePath);
-    for(let i = 0; i < arr.length; i++){
-      if(arr[i] == phrase){
-        console.log(`${phrase} exists in the file!`);
-        return true;
-      }
-    }
-    return false;
-}
-
 /////////////////new stuff
 
 
-//splits the json text and parses it, and returns an array of objects(character)
+//splits the json text and parses it, and returns an array of objects
 export function splitJsonIntoCharacterArray(filePath){
   if(doesFileExist(filePath)==false){
     return false;
   }
 
-  var jsonArray = fs.readFileSync(filePath,'utf-8',(err)=>{
+  var jsonString = fs.readFileSync(filePath,'utf-8',(err)=>{
     if(err){
       console.log(err)
     }
   }).split(stringSplitter);
 
-  let nCharacterArray = []
-  for(let i in jsonArray){
-    nCharacterArray.push(JSON.parse(jsonArray[i]))
+  let jsonArray = []
+  for(let i in jsonString){
+    jsonArray.push(JSON.parse(jsonString[i]))
   }
 
-  return nCharacterArray;
+  return jsonArray;
 }

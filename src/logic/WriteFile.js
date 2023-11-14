@@ -30,7 +30,7 @@ export function writeToFile(filePath, stringFormat="this is dummy text"){
 
 ///////////////new stuff
 
-export function writeToTextFile2(filePath, stringFormat="this is dummy text"){
+export function writeObjectToFile(filePath, stringFormat="this is dummy text"){
     //if the amount returned is 0, writeFileSync
     if(getFileSize(filePath) == 0){
         fs.writeFileSync(filePath,stringFormat,(err) =>{
