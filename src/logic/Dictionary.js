@@ -1,16 +1,15 @@
 import {getKeysFromTextFile, getDictFromImage, doesFileExist, getDictFromTextFile, getInitFromTextFile, searchEachLineTextFile} from "./ReadFile.js";
-import { writeToFile, writeToTextFile, writeToTextFile2 } from "./WriteFile.js";
+import { writeToFile, writeToTextFile } from "./WriteFile.js";
 import { getFileSize } from "./getFileSize.js";
 
 class Character{
-    constructor(romaji,pronunciation,type,notes="n/a"){
+    constructor(romaji,pronunciation,type){
         //how to character is spelt
         this.romaji = romaji;
         //how to character is pronu
         this.pronunciation = pronunciation;
         if(type != "h" && type != "k" && type != "v") type = "invalid";
         this.type = type;
-        this.notes = notes;
 
     }
 }
@@ -25,17 +24,10 @@ export class Dictionary{
 
         this.fileName = `dict${this.type}.txt`;
         this.filePath = `./src/logic/textFiles/${this.fileName}`;
-
-        this.fileName2 = `dict${this.type}2.txt`;
-        this.filePath2 = `./src/logic/textFiles/${this.fileName2}`;
         
-        this.keyArr  = [];
         this.keyName = `KEY${this.type}.txt`;
         this.keyPath = `./src/logic/textFiles/${this.keyName}`;
-
-        this.keyName2 = `KEY${this.type}.txt`;
-        this.keyPath2 = `./src/logic/textFiles/${this.keyName2}`;
-        
+        this.keyArr  = [];
 
         this.imgSrc = `./src/pictures/${this.type}`;
 
@@ -69,11 +61,8 @@ export class Dictionary{
         for(let key in this.Dictionary){
             if(this.doesKeyExist(key,"text")==false){
                 let stringFormat = `${this.Dictionary[key].romaji} ${this.Dictionary[key].pronunciation} ${this.Dictionary[key].type}`;
-                // console.log(`writing dict to file: ${stringFormat}`);
-                 writeToTextFile(this.filePath,stringFormat);
-
-                console.log(`write request`);
-                writeToTextFile2(this.filePath2, this.Dictionary[key]);
+                console.log(`writing dict to file: ${stringFormat}`);
+                writeToTextFile(this.filePath,stringFormat);
             }
         }
     }
@@ -83,7 +72,6 @@ export class Dictionary{
             if(this.doesKeyExist(k,"text") == false){
                 let stringFormat = k;
                 writeToTextFile(this.keyPath, stringFormat)
-                writeToTextFile(this.keyPath2, stringFormat)
             }
         }        
     }
@@ -151,36 +139,6 @@ export class Dictionary{
         
     }
 
-    doesKeyExist2(key, name){
-        switch(name){
- 
-         case "dict":
-                 if(!this.Dictionary[key]){
-                     console.log(`${key} doesn't exist in the ${this.type} dictionary`);
-                     return false;
-                 }
-                 else{
-                     console.log(`${key} does exist in the ${this.type} dictionary`);
-                     return true;
-                 }
-         case "text":
-                 if(doesFileExist(this.keyPath2) == false){
-                     return false;
-                 }
-                 let keyArr = getKeysFromTextFile(this.keyPath2);
-                 for(let i = 0; i < keyArr.length; i++){
-                     if(keyArr[i] == key){
-                         //key exists
-                         // console.log(`text ${key} does exist`);
-                         return true;
-                     }
-                 }
-                 return false;
-         }
-    
-         
-     }
-
     //init functions
     readInit(){
         if(doesFileExist(this.initPath)==false){
@@ -213,9 +171,8 @@ export class Dictionary{
         console.log(`//////////////////////`);
         console.log(`start`,this.init);
         this.readInit();
-        console.log(`readInit`,this.init);
         this.writeInit();
-        
+
         if(this.init.initFromImg == true){
             this.setDictFromImgSrc();
             this.writeDictToFile();

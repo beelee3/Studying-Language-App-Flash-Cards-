@@ -1,6 +1,5 @@
 import fs from "fs";
 
-const stringSplitter = `-`;
 
 // Recursive function to scan and get files
 export function scanFiles(dir, files = []) {
@@ -10,7 +9,9 @@ export function scanFiles(dir, files = []) {
     }
     //returns an array of files form the Folder
     return files
-}
+  }
+
+
 export function breakTextFileIntoLines(filePath){
   if(doesFileExist(filePath)==false){
     return false;
@@ -86,6 +87,19 @@ export function doesFileExist(filePath){
     return false;
 }
 
+export function searchFirstWordInEachLineTextFile(filePath, word){
+    const arr = breakTextFileIntoLines(filePath);
+    lines = [];
+    for(let i = 0; i < arr.length; i++){
+      var extract = [];
+      extract = arr[i].split(" ");
+      if(extract[0] == word){
+        console.log(`${word} exists in the file!`);
+        return true;
+      }
+    }
+    return false;
+}
 
 //searches for a phrase in the text file 
   //ex. "initFromImg true"
@@ -101,11 +115,4 @@ export function searchEachLineTextFile(filePath, phrase){
       }
     }
     return false;
-}
-
-//////////////////////////new stuff
-
-
-export function readJsonFromFile(){
-
 }
