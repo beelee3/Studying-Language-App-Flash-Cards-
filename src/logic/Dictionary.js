@@ -88,23 +88,6 @@ export class Dictionary{
         }        
     }
 
-    //scans image files and compares to check if it exists already in text file
-    scanAndWriteNewFiles(){
-        // console.log(`scanAndWriteFiles`);
-        const imgArray = getDictFromImage(this.imgSrc);
-        console.log(imgArray);
-        for(var i = 0; i < imgArray.length; i++){
-            var splitArr = [];
-            splitArr = imgArray[i].split(" ");
-            // console.log(`does key exist: ${this.doesKeyExist(splitArr[0],"text")}`);
-            if(this.doesKeyExist(splitArr[0],"text") == false && this.type.slice(0,1) == splitArr[2]){
-                this.add(splitArr[0],splitArr[1],splitArr[2]);
-                this.writeDictToFile();
-            }
-        }
-           
-    }
-
     //grab the data from img file and adds it to the dictionary
     setDictFromImgSrc(){
         const imgArray = getDictFromImage(this.imgSrc);
@@ -132,11 +115,10 @@ export class Dictionary{
         console.log(`set keys from text file: ${this.keyArr}`);
     }
     randomSelectKey(){
-        let rng = Math.floor(Math.random() * this.keyArr.length);
-        // console.log(`rng: ${rng} keyArr:${this.keyArr} keyArrLength:${this.keyArr.length}`);
+        let rng = Math.floor(Math.random() * (this.keyArr.length-1));
         let rngKey = this.keyArr[rng];
-        // console.log(rngKey);
-        console.log(`Romaji: [${this.Dictionary[rngKey].romaji}], Pronunciation: [${this.Dictionary[rngKey].pronunciation}], Type: [${this.Dictionary[rngKey].type}]`);
+        console.log(rngKey);
+        // console.log(`Romaji: [${this.Dictionary[rngKey].romaji}], Pronunciation: [${this.Dictionary[rngKey].pronunciation}], Type: [${this.Dictionary[rngKey].type}]`);
     }
     //this will search  to see if key exists in textFile
     doesKeyExist(key, name){
@@ -245,7 +227,6 @@ export class Dictionary{
         else{
             this.setDictFromTextFile();
             this.setKeysFromTextFile();
-            this.scanAndWriteNewFiles();
             console.log(`init from text file: わたしわしのぶ`);
         }
         console.log(`end`,this.init);

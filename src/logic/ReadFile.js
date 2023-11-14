@@ -44,6 +44,9 @@ export function getDictFromTextFile(dictFilePath){
 
 //returns array of init data
 export function getInitFromTextFile(initFilePath){
+  if(doesFileExist(initFilePath)==false){
+    return false;
+  }
   var stringFormat = fs.readFileSync(initFilePath,'utf-8');
   return stringFormat;
 }
@@ -66,13 +69,13 @@ export function getKeysFromImgSrc(imgFilePath){
 //grabs formatted names from images and produces it into an array format
 export function getDictFromImage(imgFilePath){
     var arr = scanFiles(imgFilePath);
-    // console.log(`scanned dict data: ${arr}`);
+    console.log(`scanned dict data: ${arr}`);
 
     var dictData = [];
     for(var i = 0; i < arr.length; i++){
       dictData.push(arr[i].replaceAll("-"," ").replaceAll(".png","")); 
     }
-    // console.log(`scanned dict data Array: ${dictData}`);
+    console.log(`scanned dict data Array: ${dictData}`);
     return dictData;
 }
 
