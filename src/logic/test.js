@@ -11,7 +11,18 @@ dicKata.initialize();
 dicKata.display();
 
 
-dicHira.randomSelectKey();
-dicKata.randomSelectKey();
+dicHira.writeDictToFile();
+dicHira.writeKeysToFile();
+// console.log(`hiragana`);
+// dicHira.randomSelectKey();
+// dicHira.randomSelectKey();
+// dicHira.randomSelectKey();
+// dicHira.randomSelectKey();
+
+// console.log(`katakana`);
+// dicKata.randomSelectKey();
+// dicKata.randomSelectKey();
+// dicKata.randomSelectKey();
+// dicKata.randomSelectKey();
 
 
