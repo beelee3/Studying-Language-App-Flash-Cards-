@@ -11,6 +11,10 @@ dicKata.initialize();
 dicKata.display();
 
 
+
+console.log(dicKata.getKeyArr());
+console.log(dicHira.getKeyArr());
+
 // dicHira.randomSelectKey();
 // dicKata.randomSelectKey();
 

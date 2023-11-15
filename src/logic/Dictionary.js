@@ -3,14 +3,22 @@ import { writeToFile, writeToTextFile, writeObjectToFile } from "./WriteFile.js"
 import { getFileSize } from "./getFileSize.js";
 
 class Character{
-    constructor(romaji,pronunciation,type,notes="n/a"){
+    constructor(romaji,pronunciation,type,imgSrc="n/a",notes="n/a"){
         //how to character is spelt
         this.romaji = romaji;
         //how to character is pronu
         this.pronunciation = pronunciation;
         if(type != "h" && type != "k" && type != "v") type = "invalid";
-        this.type = type;
+            if(type == "h")
+                this.type = "hiragana";
+            if(type == "k")
+                this.type = "katakana";
+            else if(type == "v")
+                this.type = "vocab";
+        
+        this.imgSrc = imgSrc;
         this.notes = notes;
+        
     }
 }
 
@@ -42,9 +50,16 @@ export class Dictionary{
         }
     }
 
+    getKeyArr(){
+        return this.keyArr;
+    }
+    getDictionary(){
+        return this.Dictionary;
+    }
     //add(romaji,pronunciation,type)
     add(romaji, pronunciation, type){
         var newCharacter = new Character(romaji, pronunciation, type);
+        newCharacter.imgSrc = this.imgSrc+`/${newCharacter.romaji}-${newCharacter.pronunciation}-${newCharacter.type.charAt(0)}.png`;
         if(newCharacter.type == "invalid"){
             return 0;
         }
@@ -122,6 +137,9 @@ export class Dictionary{
         console.log(`set keys from text file: ${this.keyArr}`);
     }
     randomSelectKey(){
+        if(this.keyArr.length <= 0){
+            return false;
+        }
         let rng = Math.floor(Math.random() * this.keyArr.length);
         // console.log(`rng: ${rng} keyArr:${this.keyArr} keyArrLength:${this.keyArr.length}`);
         let rngKey = this.keyArr[rng];

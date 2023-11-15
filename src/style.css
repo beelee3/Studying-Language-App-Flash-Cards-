@@ -1,6 +1,26 @@
 
-.center{
+.centerH{
     display: flex;
     justify-content: center;
+}
+.centerH > * {
+    border: 4px solid blue;
+}
+
+.centerV{
+    display: flex;
     align-items: center;
+}
+
+.btnBox{
+    margin: 10px;
+
+}
+
+.outerEdge{
+    background-color: aqua;
+}
+img{
+    height: 10rem;
+    width: 10rem;
 }
