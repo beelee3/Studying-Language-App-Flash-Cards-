@@ -1,6 +1,6 @@
 import fs from "fs";
 import { getFileSize } from "./getFileSize.js";
-const stringSplitter = `-`
+const stringSplitter = `--`
 
 //write to file if it doesnt exist/is empty  or append to the file
 export function writeToTextFile(filePath, stringFormat="this is dummy text"){

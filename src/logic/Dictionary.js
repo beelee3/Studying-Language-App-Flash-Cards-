@@ -37,6 +37,7 @@ export class Dictionary{
         this.keyPath = `./src/logic/textFiles/${this.keyName}`;
         this.keyArr  = [];
 
+        //path to the img folder ex. "./src/pictures/hiragana"
         this.imgSrc = `./src/pictures/${this.type}`;
 
         //test vars
@@ -56,10 +57,11 @@ export class Dictionary{
     getDictionary(){
         return this.Dictionary;
     }
+
     //add(romaji,pronunciation,type)
     add(romaji, pronunciation, type){
         var newCharacter = new Character(romaji, pronunciation, type);
-        newCharacter.imgSrc = this.imgSrc+`/${newCharacter.romaji}-${newCharacter.pronunciation}-${newCharacter.type.charAt(0)}.png`;
+        newCharacter.imgSrc = String(this.imgSrc+`/${newCharacter.romaji}-${newCharacter.pronunciation}-${newCharacter.type.charAt(0)}.png`);
         if(newCharacter.type == "invalid"){
             return 0;
         }
@@ -69,9 +71,7 @@ export class Dictionary{
     display(){
         console.log(`////////////////${this.type} dictionary//////////////////////`);
         for (var key in this.Dictionary){
-            // console.log(`this Dict name: ${this.fileName}`);
-            console.log(`Romaji: [${this.Dictionary[key].romaji}], Pronunciation: [${this.Dictionary[key].pronunciation}], Type: [${this.Dictionary[key].type}]`);
-            // console.log(`images can be accessed through ${this.imgSrc}/${this.Dictionary[key].romaji}-${this.Dictionary[key].pronunciation}-${this.Dictionary[key].type}.png`);
+            console.log(`Romaji: [${this.Dictionary[key].romaji}], Pronunciation: [${this.Dictionary[key].pronunciation}], Type: [${this.Dictionary[key].type}] SRC: [${this.Dictionary[key].imgSrc}]`);
         }
     }
     
@@ -130,6 +130,7 @@ export class Dictionary{
     }
 
     setKeysFromTextFile(){
+        console.log(`set keys?`);
         const kArray = getKeysFromTextFile(this.keyPath);
         for(let i = 0; i<kArray.length; i++){
             this.keyArr.push(kArray[i]);
@@ -141,10 +142,11 @@ export class Dictionary{
             return false;
         }
         let rng = Math.floor(Math.random() * this.keyArr.length);
-        // console.log(`rng: ${rng} keyArr:${this.keyArr} keyArrLength:${this.keyArr.length}`);
         let rngKey = this.keyArr[rng];
-        // console.log(rngKey);
-        console.log(`Romaji: [${this.Dictionary[rngKey].romaji}], Pronunciation: [${this.Dictionary[rngKey].pronunciation}], Type: [${this.Dictionary[rngKey].type}]`);
+        // console.log(`RANDOM SELECT: Romaji: [${this.Dictionary[rngKey].romaji}], Pronunciation: [${this.Dictionary[rngKey].pronunciation}], Type: [${this.Dictionary[rngKey].type}]`);
+        console.log(rngKey);
+        return rngKey;
+        // return this.Dictionary[rngKey];
     }
     //this will search  to see if key exists in textFile
     doesKeyExist(key, name){
@@ -190,10 +192,10 @@ export class Dictionary{
         
     }
     writeInit(){
-        if(doesFileExist(this.initPath) == true && getFileSize(this.initPath) == 0){
-            return true;
-        }
-        
+        // if(doesFileExist(this.initPath) == false && getFileSize(this.initPath) == 0){
+        //     return true;
+        // }
+        console.log(`calling write init`);
         // console.log(this.init);
         var stringFormat = JSON.stringify(this.init, null, 2);
         writeToFile(this.initPath,stringFormat,err=>{

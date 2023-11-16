@@ -1,5 +1,5 @@
 import fs from "fs";
-const stringSplitter = `-`;
+const stringSplitter = `--`;
 
 // Recursive function to scan and get files
 export function scanFiles(dir, files = []) {
@@ -71,7 +71,7 @@ export function splitJsonIntoCharacterArray(filePath){
   if(doesFileExist(filePath)==false){
     return false;
   }
-
+  console.log(``)
   var jsonString = fs.readFileSync(filePath,'utf-8',(err)=>{
     if(err){
       console.log(err)
