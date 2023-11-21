@@ -1,2 +1,3 @@
-./src/pictures/*
-./src/logic/textFiles/*
+/src/pictures/*
+/src/logic/textFiles/*
+/src/logic/init/*
