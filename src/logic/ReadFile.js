@@ -1,8 +1,10 @@
-import fs from "fs";
+// import fs from "fs";
+const fs = require('fs');
+
 const stringSplitter = `--`;
 
 // Recursive function to scan and get files
-export function scanFiles(dir, files = []) {
+function scanFiles(dir, files = []) {
     const fileList = fs.readdirSync(dir)
     for (const file of fileList) {
       files.push(file);
@@ -12,7 +14,7 @@ export function scanFiles(dir, files = []) {
   }
 
 
-export function breakTextFileIntoLines(filePath){
+function breakTextFileIntoLines(filePath){
   if(doesFileExist(filePath)==false){
     return false;
   }
@@ -26,7 +28,7 @@ export function breakTextFileIntoLines(filePath){
 
 
 //returns an array of keys from the text file
-export function getKeysFromTextFile(filePath){
+function getKeysFromTextFile(filePath){
     const arr = breakTextFileIntoLines(filePath);
     var keys = [];
     for(var i = 0; i < arr.length; i++){
@@ -38,13 +40,13 @@ export function getKeysFromTextFile(filePath){
 }
 
 //returns array of init data
-export function getInitFromTextFile(initFilePath){
+function getInitFromTextFile(initFilePath){
   var stringFormat = fs.readFileSync(initFilePath,'utf-8');
   return stringFormat;
 }
 
 //grabs formatted names from images and produces it into an array format
-export function getDictFromImage(imgFilePath){
+function getDictFromImage(imgFilePath){
     var arr = scanFiles(imgFilePath);
     // console.log(`scanned dict data: ${arr}`);
 
@@ -56,7 +58,7 @@ export function getDictFromImage(imgFilePath){
     return dictData;
 }
 
-export function doesFileExist(filePath){
+function doesFileExist(filePath){
     if(fs.existsSync(filePath)){
         return true;
     }
@@ -67,7 +69,7 @@ export function doesFileExist(filePath){
 
 
 //splits the json text and parses it, and returns an array of objects
-export function splitJsonIntoCharacterArray(filePath){
+function splitJsonIntoCharacterArray(filePath){
   if(doesFileExist(filePath)==false){
     return false;
   }
@@ -85,3 +87,5 @@ export function splitJsonIntoCharacterArray(filePath){
 
   return jsonArray;
 }
+
+module.exports = {scanFiles,breakTextFileIntoLines,getKeysFromTextFile,getInitFromTextFile,getDictFromImage,doesFileExist,splitJsonIntoCharacterArray};

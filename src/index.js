@@ -1,4 +1,4 @@
-import { Dictionary } from "./logic/Dictionary.js";
+import { Dictionary } from "./logic/Dictionary";
 
 
 var dicHira = new Dictionary("hiragana");

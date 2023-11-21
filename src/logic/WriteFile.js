@@ -1,9 +1,12 @@
-import fs from "fs";
-import { getFileSize } from "./getFileSize.js";
+// import fs from "fs";
+const fs = require('fs');
+// import { getFileSize } from "./getFileSize.js";
+const getFileSize = require('./getFileSize.js');
+
 const stringSplitter = `--`
 
 //write to file if it doesnt exist/is empty  or append to the file
-export function writeToTextFile(filePath, stringFormat="this is dummy text"){
+function writeToTextFile(filePath, stringFormat="this is dummy text"){
     //if the amount returned is 0, writeFileSync
     if(getFileSize(filePath) == 0){
         fs.writeFileSync(filePath,stringFormat,(err) =>{
@@ -19,7 +22,7 @@ export function writeToTextFile(filePath, stringFormat="this is dummy text"){
     }
 }
 
-export function writeToFile(filePath, stringFormat="this is dummy text"){
+function writeToFile(filePath, stringFormat="this is dummy text"){
     fs.writeFileSync(filePath,stringFormat,(err) =>{
         //in case of an error throw err.
         if(err) throw err;
@@ -29,7 +32,7 @@ export function writeToFile(filePath, stringFormat="this is dummy text"){
 
 
 ///////////////new stuff
-export function writeObjectToFile(filePath, stringFormat="this is dummy text"){
+function writeObjectToFile(filePath, stringFormat="this is dummy text"){
     //if the amount returned is 0, writeFileSync
     if(getFileSize(filePath) == 0){
         fs.writeFileSync(filePath,stringFormat,(err) =>{
@@ -44,3 +47,5 @@ export function writeObjectToFile(filePath, stringFormat="this is dummy text"){
         });
     }
 }
+
+module.exports = {writeToTextFile,writeToFile,writeObjectToFile};

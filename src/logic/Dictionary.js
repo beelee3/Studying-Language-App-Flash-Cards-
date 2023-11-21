@@ -1,6 +1,9 @@
-import {getKeysFromTextFile, getDictFromImage, doesFileExist, getInitFromTextFile, splitJsonIntoCharacterArray} from "./ReadFile.js";
-import { writeToFile, writeToTextFile, writeObjectToFile } from "./WriteFile.js";
-import { getFileSize } from "./getFileSize.js";
+// import {getKeysFromTextFile, getDictFromImage, doesFileExist, getInitFromTextFile, splitJsonIntoCharacterArray} from "./ReadFile.js";
+const {getKeysFromTextFile,getDictFromImage,doesFileExist,getInitFromTextFile,splitJsonIntoCharacterArray} = require('./ReadFile');
+
+// import { writeToFile, writeToTextFile, writeObjectToFile } from "./WriteFile.js";
+const {writeToFile,writeToTextFile, writeObjectToFile} = require('./WriteFile.js');
+
 
 class Character{
     constructor(romaji,pronunciation,type,imgSrc="n/a",notes="n/a"){
@@ -22,7 +25,7 @@ class Character{
     }
 }
 
-export class Dictionary{
+class Dictionary{
     //type = hiragana/katakana/vocab
     constructor(type){
         this.Dictionary = {};
@@ -236,4 +239,4 @@ export class Dictionary{
 
 }
 
-
+module.exports = Dictionary;

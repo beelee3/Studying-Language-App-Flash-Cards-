@@ -1,4 +1,6 @@
-import {Dictionary} from "./Dictionary.js";
+// import {Dictionary} from "./Dictionary.js";
+const Dictionary = require('./Dictionary');
+
 
 var dicHira = new Dictionary("hiragana");
 var dicKata = new Dictionary("katakana");

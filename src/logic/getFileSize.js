@@ -1,7 +1,8 @@
-import fs from "fs";
+// import fs from "fs";
+const fs = require('fs');
 
 
-export function getFileSize(filePath){
+function getFileSize(filePath){
     try{
       //if file exists send back the total amount of characters
       if(fs.existsSync(filePath)){
@@ -17,3 +18,5 @@ export function getFileSize(filePath){
       console.log(err);
   }
 }
+
+module.export = getFileSize;
