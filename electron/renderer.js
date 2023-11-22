@@ -1,8 +1,40 @@
-// import { Dictionary } from "../src/logic/Dictionary";
+const { dictionaryHiragana } = require('./main');
+// import { dictionaryHiragana, dictionaryKatakana } from './main';
 
-const Dictionary = require('../src/logic/Dictionary.js');
+const dicH = dictionaryHiragana.getDictionary();
+const dicHKeyArr = dictionaryHiragana.getKeyArr();
+var iterator = 0;
 
-var dictHira = new Dictionary("hiragana");
+function decrement(){
+    if(iterator-1 >= 0)
+        iterator--;
 
-dictHira.initialize();
-dictHira.display();
+    displayInfo();
+    console.log(`--`);
+
+}
+
+function random(){
+    var rngKey = dictHira.randomSelectKey();
+    document.getElementById("characterImg").src = dicH[rngKey].imgSrc;
+}
+
+function increment(){
+    if(iterator+1 <= dicHKeyArr.length-1)
+        iterator++;
+
+    displayInfo();
+    console.log(`++`);
+}
+
+function displayInfo(iterator){
+    document.getElementById("characterImg").src = dicH[dicHKeyArr[iterator]].imgSrc;
+}
+
+document.getElementById("back").addEventListener("click", decrement);
+document.getElementById("random").addEventListener("click", random);
+document.getElementById("next").addEventListener("click", increment);
+
+
+
+

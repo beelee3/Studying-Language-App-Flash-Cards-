@@ -2,9 +2,10 @@
 .centerH{
     display: flex;
     justify-content: center;
+    gap: 10px;
 }
 .centerH > * {
-    border: 4px solid blue;
+    border: 1px solid navajowhite;
 }
 
 .centerV{
@@ -14,13 +15,17 @@
 
 .btnBox{
     margin: 10px;
-
 }
 
 .outerEdge{
-    background-color: aqua;
+    background-color: beige;
 }
 img{
     height: 10rem;
     width: 10rem;
+}
+
+.menuButton{
+    width: 150px;
+    height: 50px;
 }
