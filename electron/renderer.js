@@ -1,5 +1,12 @@
 const { dictionaryHiragana } = require('./main');
+
+// const {remote} = require('electron');
+// const mainProcess = remote.require('./main');
+
 // import { dictionaryHiragana, dictionaryKatakana } from './main';
+
+// const dicH = mainProcess.dictionaryHiragana.getDictionary();
+// const dicHKeyArr = mainProcess.dictionaryHiragana.getKeyArr();
 
 const dicH = dictionaryHiragana.getDictionary();
 const dicHKeyArr = dictionaryHiragana.getKeyArr();

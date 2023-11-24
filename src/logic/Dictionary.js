@@ -2,7 +2,7 @@
 const {getKeysFromTextFile,getDictFromImage,doesFileExist,getInitFromTextFile,splitJsonIntoCharacterArray} = require('./ReadFile');
 
 // import { writeToFile, writeToTextFile, writeObjectToFile } from "./WriteFile.js";
-const {writeToFile,writeToTextFile, writeObjectToFile} = require('./WriteFile.js');
+const {writeToFile,writeToTextFile, writeObjectToFile} = require('./WriteFile');
 
 
 class Character{
@@ -211,8 +211,8 @@ class Dictionary{
     }
 
     initialize(){
-        console.log(`//////////////////////`);
-        console.log(`start`,this.init);
+        // console.log(`//////////////////////`);
+        // console.log(`start`,this.init);
         this.readInit();
         this.writeInit();
 
@@ -222,17 +222,17 @@ class Dictionary{
             this.writeKeysToFile();
             this.init.initFromImg = false;
             this.writeInit();
-            console.log(`init from image complete`);
+            // console.log(`init from image complete`);
         }
         else{
             // this.setDictFromTextFile();
             this.setDictFromTextFile();
             this.setKeysFromTextFile();
             this.scanAndWriteNewFiles();
-            console.log(`init from text file: わたしわしのぶ`);
+            // console.log(`init from text file: わたしわしのぶ`);
         }
-        console.log(`end`,this.init);
-        console.log(`//////////////////////`);
+        // console.log(`end`,this.init);
+        // console.log(`//////////////////////`);
     }
 
 

@@ -1,7 +1,7 @@
 // import fs from "fs";
 const fs = require('fs');
 // import { getFileSize } from "./getFileSize.js";
-const getFileSize = require('./getFileSize.js');
+const {getFileSize} = require('./getFileSizeCount');
 
 const stringSplitter = `--`
 

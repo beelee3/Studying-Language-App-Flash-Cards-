@@ -23,6 +23,7 @@ console.log(`//////////`);
 let dicH = dicHira.getDictionary();
 
 console.log(`new Rng key select:${dicH[ dicHira.randomSelectKey()].romaji}`);
+console.log(`print dictionary `,dicH);
 
 // dicHira.randomSelectKey();
 // dicKata.randomSelectKey();

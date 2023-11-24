@@ -19,4 +19,5 @@ function getFileSize(filePath){
   }
 }
 
-module.export = getFileSize;
+// module.export = getFileSize;
+module.exports = {getFileSize};
