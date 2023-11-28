@@ -41,8 +41,8 @@ function displayInfo(){
 
  async function init(){
    console.log(`init hiragana.js`); 
-   dicKeyArr = await window.electronApi.getDictHiraKeys();
-   dic =  await window.electronApi.getDictHira();
+   dicKeyArr = await window.electronApi.getDictKataKeys();
+   dic =  await window.electronApi.getDictKata();
 
    console.log(dic[dicKeyArr[iterator]].imgSrc);
 
