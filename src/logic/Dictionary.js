@@ -87,6 +87,13 @@ class Dictionary{
             }
         }
     }
+    //use this to rewrite and update the whole text file
+    rewriteDictToFile(){
+        for(let key in this.Dictionary){
+            let stringFormat = JSON.stringify(this.Dictionary[key],null,2);
+            writeObjectToFile(this.filePath, stringFormat);
+        }
+    }
 
     writeKeysToFile(){ //grab the img files and write the keys into textfile
         for(let k in this.Dictionary){

@@ -4,7 +4,8 @@
     justify-content: center;
     gap: 10px;
 }
-.centerH > * {
+
+.centerH > button, img, #notes {
     border: 1px solid navajowhite;
 }
 
@@ -28,4 +29,9 @@ img{
 .menuButton{
     width: 150px;
     height: 50px;
+}
+
+.imgChart{
+    height: 50px;
+    width: 50px;
 }
