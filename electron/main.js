@@ -15,7 +15,7 @@ const {getDictHira,
   initDict,
   dicIpcHandlers} = require('./appHandler');
 
-const {dictHira,dictKata} = require('./appHandler');
+
 
 // const newWin = new BrowserWindow({width: 800, height: 600});
 // newWin.loadURL('https://github.com');
@@ -23,8 +23,8 @@ const {dictHira,dictKata} = require('./appHandler');
 const createWindow = () => {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
-    width: 800,
-    height: 600,
+    width: 1280,
+    height: 960,
     webPreferences: {
       preload: path.join(__dirname, 'preload.js')
     }
@@ -49,14 +49,8 @@ const createWindow = () => {
 // Some APIs can only be used after this event occurs.
 
 app.whenReady().then(() => {
-// app.on('ready', function(){
-  // ipcMain.handle('get-hira-dict', getDictHira);
-  // ipcMain.handle('get-hira-keys', getDictHiraKeys);
-  // ipcMain.handle('get-kata-dict', getDictKata);
-  // ipcMain.handle('get-kata-keys', getDictKataKeys);
-
-  dicIpcHandlers();
-  
+  initDict();//appHandler.js
+  dicIpcHandlers(); //from  appHandler.jks
   createWindow()
 
   // ipcMain.on('get-hira-dict', getDictHira);
@@ -81,42 +75,3 @@ app.on('window-all-closed', () => {
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
-
-initDict();
-
-
-
-// ipcMain.on("init", ()=>{
-//   dictHira.initialize();
-//   dictKata.initialize();
-// })
-
-
-// var dictHira = new Dictionary("hiragana");
-// dictHira.initialize();
-
-// var dictKata = new Dictionary("katakana");
-// dictKata.initialize();
-
-
-//  async function getDictHira(){
-//   const data = await dictHira.getDictionary();
-//   // console.log(`get dict hiragana ${data}`);
-//   return data;
-//   // return await dictHira.getDictionary();
-// }
-
-// async function getDictHiraKeys(){
-//   const data =  await dictHira.getKeyArr();
-//   // console.log(`get keys hiragana ${data}`);
-//   return data;
-//   // return await dictHira.getDictionary();
-// }
-
-
-// async function getDictKata(){
-//   return await dictKata.getDictionary();
-// }
-// async function getDictKataKeys(){
-//   return await dictKata.getKeyArr();
-// }

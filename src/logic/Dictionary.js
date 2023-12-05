@@ -21,7 +21,7 @@ class Character{
         
         this.imgSrc = imgSrc;
         this.notes = notes;
-        
+       
     }
 }
 

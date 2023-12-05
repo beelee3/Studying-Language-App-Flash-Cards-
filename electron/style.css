@@ -1,4 +1,23 @@
+.container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    border: 1px solid navajowhite ;
+    background-color: beige;
+}
 
+#romaji, #pronunciation, #notes{
+    
+    background-color: gray;
+}
+#content > *{
+    font-size: 15px;
+    background-color: aquamarine;
+}
+
+.container > p{
+    flex-basis: 30%;
+}
 .centerH{
     display: flex;
     justify-content: center;
@@ -31,7 +50,7 @@ img{
     height: 50px;
 }
 
-.imgChart{
+#imgChart{
     height: 50px;
     width: 50px;
 }
