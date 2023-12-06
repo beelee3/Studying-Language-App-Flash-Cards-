@@ -12,62 +12,56 @@ async function init(){
     console.log(dicHira);
     console.log(dicKata);
     display();
+
  }
 
-function display(){
+ function display(){
     var targetDiv = document.getElementById("dHira");
 
-    // console.log(`display function`);
-    // for(var key in dicHira){
-    //     console.log(`Romaji: ${dicHira[key].romaji}  Pronunciation: ${dicHira[key].pronunciation}  Notes: ${dicHira[key].notes}`);
-    // }
-
     for(var key in dicHira){
-        //creating p tag
-        console.log(`123123`);
-        console.log(`display: ${dicHira[key]}`);
+        const divElement  = document.createElement("div");
+        divElement.className = "centerV centerH";
+        divElement.id = `${key}`;
 
         const paraElement  = document.createElement("p");
-        paraElement.className = "centerV";
 
         //content that goes into p tag
         const nodeImg = document.createElement("img")
             nodeImg.src = imgAddon+dicHira[key].imgSrc;
             nodeImg.id = "imgChart";
 
-        const node  = document.createTextNode(`Romaji: [${dicHira[key].romaji}]  Pronunciation: [${dicHira[key].pronunciation}] \n Notes: [${dicHira[key].notes}]`);
+        // const node  = document.createTextNode(`Romaji: [${dicHira[key].romaji}]  \n Pronunciation: [${dicHira[key].pronunciation}] \n Notes: [${dicHira[key].notes}]`);
+        const node1  = document.createTextNode(`Romaji: [${dicHira[key].romaji}]`);
+        const node2  = document.createTextNode(`Pronunciation: [${dicHira[key].pronunciation}]`);
+        const node3  = document.createTextNode(`Notes: [${dicHira[key].notes}]`);
 
-        //append p contents into p
-        paraElement.appendChild(nodeImg);
-        paraElement.appendChild(node);
+        //append textNode contents into p
+        // paraElement.appendChild(node);
+        paraElement.appendChild(node1);
+        paraElement.appendChild(document.createElement("br"));
+        paraElement.appendChild(node2);
+        paraElement.appendChild(document.createElement("br"));
+        paraElement.appendChild(node3);
 
-        //append p into targeted div
-        targetDiv.appendChild(paraElement);
+        //append img/p into div
+        divElement.appendChild(nodeImg)
+        divElement.appendChild(paraElement);
+         //append div into targeted div
+        targetDiv.appendChild(divElement);
     }
+    ////design///
+// <div class="centerV">
+//     <img src="../../src/pictures/hiragana/a-a-h.png" id="imgChart">
+//     <p>
+//         Romaji: X  
+//         <br>
+//         Pronunciation: X  
+//         <br>
+//         Notes: X
+//     </p>
+// </div>
 }
 
-/*<p class="centerH centerV">
-    <img src="../../src/pictures/hiragana/chi-chi-h.png" id="characterImg" class="imgChart">
-    Romaji: X  Pronunciation: X  Notes: X
- </p> */
-
-function prototype(){
-    var targetDiv = document.getElementById("dHira");
-    const paraE = document.createElement("p");
-        paraE.className = "centerH centerV";
-
-    const imgNode = document.createElement("img");
-        imgNode.id = "imgChart";
-        imgNode.src = "https://buffer.com/cdn-cgi/image/w=1000,fit=contain,q=90,f=auto/library/content/images/size/w1200/2023/10/free-images.jpg";
-
-    const node = document.createTextNode("woah hello there");
-   
-    paraE.appendChild(imgNode);
-    paraE.appendChild(node);
-
-    targetDiv.appendChild(paraE);
-}
 
 init();
 
-// prototype();
