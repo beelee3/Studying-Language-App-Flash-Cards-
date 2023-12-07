@@ -37,7 +37,6 @@ const createWindow = () => {
   });
   // and load the index.html of the app.
   mainWindow.loadFile('./electron/index.html')
-
   // Open the DevTools.
   // mainWindow.webContents.openDevTools()
 }
@@ -51,6 +50,7 @@ const createWindow = () => {
 app.whenReady().then(() => {
   initDict();//appHandler.js
   dicIpcHandlers(); //from  appHandler.jks
+  ipcMain.handle('get-chart', createChartWindow);
   createWindow()
 
   // ipcMain.on('get-hira-dict', getDictHira);
@@ -75,3 +75,15 @@ app.on('window-all-closed', () => {
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
+
+const createChartWindow = () => {
+  const childWin = new BrowserWindow({
+    width: 1280,
+    height: 960,
+    webPreferences: {
+      preload: path.join(__dirname, 'preload.js')
+    }
+  });
+
+    childWin.loadFile('./electron/chart/chart.html');
+}

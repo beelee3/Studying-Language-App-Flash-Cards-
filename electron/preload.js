@@ -8,6 +8,7 @@ getDictHiraKeys: ()=> ipcRenderer.invoke('get-hira-keys'),
 getDictKata: ()=> ipcRenderer.invoke('get-kata-dict'),
 getDictKataKeys: ()=> ipcRenderer.invoke('get-kata-keys'),
 
+getChart: ()=> ipcRenderer.invoke('get-chart'),
 });
 
 // ipcMain.handle('get-hira-dict', getDictHira);

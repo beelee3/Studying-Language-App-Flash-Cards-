@@ -31,6 +31,14 @@ incrementButton.addEventListener('click', async ()=>{
 });
 
 
+const chartButton = document.getElementById("chart");
+chartButton.addEventListener('click', async ()=>{
+    window.electronApi.getChart();
+});
+
+
+
+
 function displayInfo(){
     console.log(`display call`);
     document.getElementById("characterImg").src = imgAddon+dic[dicKeyArr[iterator]].imgSrc;
@@ -49,6 +57,8 @@ function displayInfo(){
    console.log(dic);
    console.log(dicKeyArr);
 }
+
+
 
 init();
 
