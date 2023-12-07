@@ -105,32 +105,21 @@ function showSorted(){
     if(currentSortState == currentSortState.all)
         return false;
     
-    //sortedArrayHira is an array of Objects
-    sortedArrayHira = sortBy(importedArrayHira,currentSortState);
-     console.log(sortedArrayHira);
 
     const targetDiv = document.getElementById("dHira");
     const targetDivChildren = targetDiv.querySelectorAll('.character');
     console.log(targetDivChildren);
 
-    let found = [];
-    for(let i=0; i<sortedArrayHira.length; i++){
-  
-        for(let x=0; x<targetDivChildren.length; x++){
-            if(sortedArrayHira[i].romaji != String(targetDivChildren[x].id)){
-                   targetDivChildren[x].style.display ="none";
-                // document.getElementById(String(targetDivChildren[x].id)).style.display = "none";
-                console.log(`sorted Array Hira: ${sortedArrayHira[i].romaji}, target Div Children: ${targetDivChildren[x].id}`);
-            }
-            else{
-                found.push(targetDivChildren[x]);
-            }
+    for(let x=0; x<targetDivChildren.length; x++){
+        // console.log(sortedArrayHira[i].romaji+"---"+targetDivChildren[x].id+"---"+Boolean(sortedArrayHira[i].romaji != String(targetDivChildren[x].id)));
+
+        if(!String(targetDivChildren[x].id).includes(currentSortState)){
+            document.getElementById(String(targetDivChildren[x].id)).style.display = "none";
+            continue;
+        }
+
+        document.getElementById(String(targetDivChildren[x].id)).style.display = "block";
             
-        }
-        console.log('found!',found);
-        for(let i = 0; i < found.length; i++){
-            found[i].style.display = "block";
-        }
     }
 }
 
