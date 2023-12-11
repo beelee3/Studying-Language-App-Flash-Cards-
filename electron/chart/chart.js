@@ -1,11 +1,12 @@
-// const {sortBy} = require('./sorting.js');
- import { sortBy } from "./sorting.js";
+// import {init,showAll,showToggled,ToggleState,currentToggleState} from "./chartLogic.js";
+
+// var currentToggleState;
 
 var dicKata;
 var dicHira;
 const imgAddon = `../.`
 
-const sortState = {
+const ToggleState = {
     all:'all',
     a: 'a',
     i: 'i',
@@ -13,9 +14,8 @@ const sortState = {
     e: 'e',
     o: 'o',
 };
-var currentSortState;
-var sortedArrayHira,sortedArrayKata;
 
+var currentToggleState;
 var importedArrayHira = [], importedArrayKata = [];
 
 
@@ -28,14 +28,15 @@ async function init(){
     console.log(dicHira);
     console.log(dicKata);
     display();
-
+    noteHandler();
  }
 
- function display(){
+function display(){
     var targetDiv = document.getElementById("dHira");
 
     for(var key in dicHira){
-        const divElement  = document.createElement("div");
+        // const divElement  = document.createElement("div");
+        const divElement  = document.createElement("button");
         divElement.className = "centerV centerH character";
         divElement.id = `${key}`;
 
@@ -47,16 +48,26 @@ async function init(){
             nodeImg.id = "imgChart";
 
         // const node  = document.createTextNode(`Romaji: [${dicHira[key].romaji}]  \n Pronunciation: [${dicHira[key].pronunciation}] \n Notes: [${dicHira[key].notes}]`);
-        const node1  = document.createTextNode(`Romaji: [${dicHira[key].romaji}]`);
-        const node2  = document.createTextNode(`Pronunciation: [${dicHira[key].pronunciation}]`);
-        const node3  = document.createTextNode(`Notes: [${dicHira[key].notes}]`);
+        // const node1  = document.createTextNode(`Romaji: [${dicHira[key].romaji}]`);
+        // const node2  = document.createTextNode(`Pronunciation: [${dicHira[key].pronunciation}]`);
+        // const node3  = document.createTextNode(`Notes: [${dicHira[key].notes}]`);
+
+        const node1  = document.createElement("p");
+        node1.textContent = `Romaji: [${dicHira[key].romaji}]`;
+        node1.className = "romaji"
+
+        const node2  = document.createElement("p") 
+        node2.textContent = `Pronunciation: [${dicHira[key].pronunciation}]`;
+
+        const node3  = document.createElement("p");
+        node3.textContent = `Notes: [${dicHira[key].notes}]`;
 
         //append textNode contents into p
         // paraElement.appendChild(node);
         paraElement.appendChild(node1);
-        paraElement.appendChild(document.createElement("br"));
+        // paraElement.appendChild(document.createElement("br"));
         paraElement.appendChild(node2);
-        paraElement.appendChild(document.createElement("br"));
+        // paraElement.appendChild(document.createElement("br"));
         paraElement.appendChild(node3);
 
         //append img/p into div
@@ -69,17 +80,6 @@ async function init(){
 
         importedArrayHira.push(dicHira[key]);
     }
-    ////design///
-// <div class="centerV">
-//     <img src="../../src/pictures/hiragana/a-a-h.png" id="imgChart">
-//     <p>
-//         Romaji: X  
-//         <br>
-//         Pronunciation: X  
-//         <br>
-//         Notes: X
-//     </p>
-// </div>
 }
 
 //render functions
@@ -88,77 +88,97 @@ async function init(){
     //hide everything else
 
 
-//sorting stuff
+//Toggleing stuff
 function showAll(){
     //show all elements in the chart
     const targetDiv = document.getElementById("dHira");
     const targetDivChildren = targetDiv.querySelectorAll('.character');
 
     for(let i=0; i<targetDivChildren.length; i++){
-        targetDivChildren[i].style.display = "block";
-        
+        targetDivChildren[i].style.display = "flex";
     }
 }
-function showSorted(){
-    //show only the items on the sorted chart
-    console.log(typeof currentSortState);
-    if(currentSortState == currentSortState.all)
+function showToggled(){
+    //show only the items on the Toggleed chart
+    console.log(typeof currentToggleState);
+    if(currentToggleState == currentToggleState.all){
         return false;
+    }
+        
     
-
     const targetDiv = document.getElementById("dHira");
     const targetDivChildren = targetDiv.querySelectorAll('.character');
     console.log(targetDivChildren);
 
     for(let x=0; x<targetDivChildren.length; x++){
-        // console.log(sortedArrayHira[i].romaji+"---"+targetDivChildren[x].id+"---"+Boolean(sortedArrayHira[i].romaji != String(targetDivChildren[x].id)));
-
-        if(!String(targetDivChildren[x].id).includes(currentSortState)){
+        if(!String(targetDivChildren[x].id).includes(currentToggleState)){
             document.getElementById(String(targetDivChildren[x].id)).style.display = "none";
             continue;
         }
 
-        document.getElementById(String(targetDivChildren[x].id)).style.display = "block";
+        document.getElementById(String(targetDivChildren[x].id)).style.display = "flex";
             
     }
 }
 
-const aSortButton = document.getElementById("aSort");
-aSortButton.addEventListener('click', async ()=>{
-    currentSortState = sortState.a;
-    showSorted();
+//if you click on a character div, it will expand the div and show the notes
+function noteHandler(){
+    const targetDiv = document.getElementById("dHira");
+    const targetDivChildren = targetDiv.querySelectorAll('.character');
+    console.log(targetDivChildren);
+
+    for(let i = 0; i < targetDivChildren.length; i++){
+        targetDivChildren[i].addEventListener('click',function(){
+            //this is important, without this the function is trying to call data that hasnt been created yet
+            if(this === undefined){
+                return false;
+            }
+            this.style.display = "none";
+            console.log(`was clicked: ${this.id}`);
+        });
+    }
+}
+
+
+
+
+//// buttons
+const aToggleButton = document.getElementById("aToggle");
+aToggleButton.addEventListener('click', async ()=>{
+    currentToggleState = ToggleState.a;
+    showToggled();
 });
 
-const iSortButton = document.getElementById("iSort");
-iSortButton.addEventListener('click', async ()=>{
-    currentSortState = sortState.i;
-    showSorted();
+const iToggleButton = document.getElementById("iToggle");
+iToggleButton.addEventListener('click', async ()=>{
+    currentToggleState = ToggleState.i;
+    showToggled();
 });
 
-const uSortButton = document.getElementById("uSort");
-uSortButton.addEventListener('click', async ()=>{
-    currentSortState = sortState.u;
-    showSorted();
+const uToggleButton = document.getElementById("uToggle");
+uToggleButton.addEventListener('click', async ()=>{
+    currentToggleState = ToggleState.u;
+    showToggled();
 });
 
-const eSortButton = document.getElementById("eSort");
-eSortButton.addEventListener('click', async ()=>{
-    currentSortState = sortState.e;
-    showSorted();
+const eToggleButton = document.getElementById("eToggle");
+eToggleButton.addEventListener('click', async ()=>{
+    currentToggleState = ToggleState.e;
+    showToggled();
 });
 
-const oSortButton = document.getElementById("oSort");
-oSortButton.addEventListener('click', async ()=>{
-    currentSortState = sortState.o;
-    showSorted();
+const oToggleButton = document.getElementById("oToggle");
+oToggleButton.addEventListener('click', async ()=>{
+    currentToggleState = ToggleState.o;
+    showToggled();
 });
 
 const showButton = document.getElementById("show");
 showButton.addEventListener('click', async ()=>{
-    currentSortState = sortState.all;
+    currentToggleState = ToggleState.all;
     showAll();
 
 });
 
-
 init();
+

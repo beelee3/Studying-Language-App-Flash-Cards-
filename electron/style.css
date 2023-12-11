@@ -1,3 +1,6 @@
+body{
+    background-color: #FDF7E4;
+}
 .container{
     display: flex;
     flex-wrap: wrap;
@@ -8,11 +11,14 @@
 
 #romaji, #pronunciation, #notes{
     
-    background-color: gray;
+    background-color: beige;
 }
 #content > *{
-    font-size: 15px;
-    background-color: aquamarine;
+    font-size: 25px;
+    background-color: #DED0B6;
+}
+#content {
+    border: 1px solid navajowhite;
 }
 
 .centerH{
@@ -28,7 +34,7 @@
 .centerV{
     display: flex;
     align-items: center;
-    margin: 10px;
+    margin: 5px;
     padding: 5px;
 }
 
@@ -42,6 +48,7 @@
 img{
     height: 20rem;
     width: 20rem;
+    border: 2px solid #BBAB8C;
 }
 
 .menuButton{
@@ -66,7 +73,22 @@ img{
     border: 1px solid black;
 }
 
+#dHira> button, #dKata > button{
+    flex-basis: 20%;
+    border: 1px solid black;
+}
+
 .break {
     flex-basis: 100%;
     height: 0;
+}
+
+.romaji, .pronunciation, .notes{
+    font-weight: bold;
+    background-color: beige;
+}
+
+#dHira{
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
