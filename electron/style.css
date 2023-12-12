@@ -10,7 +10,6 @@ body{
 }
 
 #romaji, #pronunciation, #notes{
-    
     background-color: beige;
 }
 #content > *{
@@ -73,9 +72,13 @@ img{
     border: 1px solid black;
 }
 
-#dHira> button, #dKata > button{
+#dHira> button, 
+#dKata > button,
+#dHira> .character, 
+#dKata > .character{
     flex-basis: 20%;
     border: 1px solid black;
+    background-color:#e4decb;
 }
 
 .break {
@@ -83,12 +86,21 @@ img{
     height: 0;
 }
 
-.romaji, .pronunciation, .notes{
+.romaji, .pronunciation, .notes, #dRomaji, #dPronunciation, #dNotes{
+    font-size: 18px;
     font-weight: bold;
-    background-color: beige;
+    /* background-color: beige; */
 }
 
-#dHira{
-    margin-top: 10px;
-    margin-bottom: 10px;
+#dCharHira{
+    /* font-size: 25px; */
+    padding-top: 50px;
+    padding-bottom: 50px;
+    background-color: #e4decb;
 }
+
+/* #dCharHira>#d{
+    font-size: 25px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+} */
