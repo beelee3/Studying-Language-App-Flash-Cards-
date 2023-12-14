@@ -1,6 +1,4 @@
-import { dictHira } from "../appHandler";
-
-export const displayChar = document.getElementById("dCharHira");
+export const dislayChar = document.getElementById("dCharHira");
 
 var dicKata;
 var dicHira;
@@ -9,14 +7,14 @@ var importedArrayHira = [], importedArrayKata = [];
 
 
 export async function init(){
-    console.log(`chart.js`); 
+    console.log(` chart.js`); 
     dicKata =  await window.electronApi.getDictKata();
     dicHira =  await window.electronApi.getDictHira();
 
     console.log(dicHira);
     console.log(dicKata);
 
-    displayChar.style.display = "none";
+    dislayChar.style.display = "none";
 
     display();
     noteHandler();
@@ -80,7 +78,7 @@ export function showAll(){
     //show all elements in the chart
     const targetDiv = document.getElementById("dHira");
     const targetDivChildren = targetDiv.querySelectorAll('.character');
-    displayChar.style.display = "none";
+    dislayChar.style.display = "none";
     for(let i=0; i<targetDivChildren.length; i++){
         targetDivChildren[i].style.display = "flex";
     }
@@ -120,27 +118,9 @@ export function toggleOthersOff(elementToDisplay, listOfElements){
         document.getElementById(listOfElements[x].id).style.display = "none";
             
     }
-    displayChar.style.display = "flex";
-    // document.getElementById("dRomajiHira").innerHTML = `Romaji: \n [${dicHira[elementToDisplay.id].romaji}]`;
-    // document.getElementById("dPronunciationHira").innerHTML = `Pronunciation: \n [${dicHira[elementToDisplay.id].pronunciation}]`;
-    document.getElementById("dRomajiHira").innerHTML = `${dicHira[elementToDisplay.id].romaji}`;
-    document.getElementById("dPronunciationHira").innerHTML = `${dicHira[elementToDisplay.id].pronunciation}`;
-    document.getElementById("dNotesHira").value = dicHira[elementToDisplay.id].notes;
+    dislayChar.style.display = "flex";
+    document.getElementById("dRomajiHira").innerHTML = `Romaji: \n [${dicHira[elementToDisplay.id].romaji}]`;
+    document.getElementById("dPronunciationHira").innerHTML = `Pronunciation: \n [${dicHira[elementToDisplay.id].pronunciation}]`;
+    document.getElementById("dNotesHira").innerHTML = dicHira[elementToDisplay.id].notes;
     
-}
-
-export async function updateNotes(romaji, textContents){
-    console.log(`sending over ${romaji} \nTextContents: ${textContents}`);
-
-    //call for invoke process call
-        //send over the text content with the dictionary key
-            //the notes get updated
-        //send the updated data back to chart js;
-
-    //window.electronApi.submitNotes()
-    
-    await window.electronApi.setNotes("hira",romaji,textContents);
-
-    dictHira = await window.electronApi.getDictHira();
-    console.log(dictHira);
 }

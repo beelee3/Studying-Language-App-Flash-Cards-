@@ -15,6 +15,8 @@ const {getDictHira,
   initDict,
   dicIpcHandlers} = require('./appHandler');
 
+
+
 // const newWin = new BrowserWindow({width: 800, height: 600});
 // newWin.loadURL('https://github.com');
 
@@ -49,7 +51,7 @@ app.whenReady().then(() => {
   initDict();//appHandler.js
   dicIpcHandlers(); //from  appHandler.jks
   ipcMain.handle('get-chart', createChartWindow);
-  createWindow();
+  createWindow()
 
   // ipcMain.on('get-hira-dict', getDictHira);
   // ipcMain.on('get-hira-keys', getDictHiraKeys);
@@ -83,5 +85,5 @@ const createChartWindow = () => {
     }
   });
 
-  childWin.loadFile('./electron/chart/chart.html');
+    childWin.loadFile('./electron/chart/chart.html');
 }

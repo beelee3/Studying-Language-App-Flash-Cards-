@@ -1,4 +1,4 @@
-import {init,showAll,displayChar,updateNotes} from "./chartLogic.js";
+import {init,showAll,noteHandler,dislayChar} from "./chartLogic.js";
 
 // var currentToggleState;
 
@@ -28,7 +28,7 @@ export function showToggled(){
     const targetDivChildren = targetDiv.querySelectorAll('.character');
     console.log(targetDivChildren);
 
-    displayChar.style.display = "none";
+    dislayChar.style.display = "none";
     for(let x=0; x<targetDivChildren.length; x++){
         if(!String(targetDivChildren[x].id).includes(currentToggleState)){
             document.getElementById(String(targetDivChildren[x].id)).style.display = "none";
@@ -78,18 +78,6 @@ showButton.addEventListener('click', async ()=>{
     showAll();
 
 });
-
-const submitEditButton = document.getElementById("submitEdit");
-submitEditButton.addEventListener('click', async ()=>{
-    // document.getElementById("dRomajiHira").innerHTML = `Romaji: \n [${dicHira[elementToDisplay.id].romaji}]`;
-    // document.getElementById("dPronunciationHira").innerHTML = `Pronunciation: \n [${dicHira[elementToDisplay.id].pronunciation}]`;
-    // document.getElementById("dNotesHira").innerHTML = dicHira[elementToDisplay.id].notes;
-
-    var romaji  = document.getElementById("dRomajiHira").innerHTML;
-    var textNodes = document.getElementById("dNotesHira").value;
-    updateNotes(romaji, textNodes);
-    // init();
-})
 
 init();
 
