@@ -52,7 +52,7 @@ function displayInfo(){
    dicKeyArr = await window.electronApi.getDictHiraKeys();
    dic =  await window.electronApi.getDictHira();
 
-   console.log(dic[dicKeyArr[iterator]].imgSrc);
+//    console.log(dic[dicKeyArr[iterator]].imgSrc);
 
    console.log(dic);
    console.log(dicKeyArr);
