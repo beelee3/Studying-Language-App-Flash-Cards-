@@ -88,7 +88,11 @@ img{
     background-color: beige;
 }
 
-#dHira{
-    margin-top: 10px;
-    margin-bottom: 10px;
+#dCharHira{
+    margin: 25px;
+    padding: 25px;
+    flex-basis: 30%;
+}
+#dCharHira > p{
+    margin: 10px;
 }

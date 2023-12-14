@@ -2,7 +2,12 @@ var dicKata;
 var dicHira;
 const imgAddon = `../.`
 
-export const ToggleState = {
+export const displayCharHira = document.getElementById("dCharHira")
+
+export var currentToggleState;
+export var importedArrayHira = [], importedArrayKata = [];
+
+const ToggleState = {
     all:'all',
     a: 'a',
     i: 'i',
@@ -10,10 +15,6 @@ export const ToggleState = {
     e: 'e',
     o: 'o',
 };
-
-export var currentToggleState;
-export var importedArrayHira = [], importedArrayKata = [];
-
 
 
 export async function init(){
@@ -23,8 +24,10 @@ export async function init(){
 
     console.log(dicHira);
     console.log(dicKata);
+    displayCharHira.style.display = "none";
+    
     display();
-
+    noteHandler();
  }
 
  export function display(){
@@ -78,31 +81,60 @@ export function showAll(){
     //show all elements in the chart
     const targetDiv = document.getElementById("dHira");
     const targetDivChildren = targetDiv.querySelectorAll('.character');
+    displayCharHira.style.display = "none";
 
     for(let i=0; i<targetDivChildren.length; i++){
         targetDivChildren[i].style.display = "flex";
     }
 }
-export function showToggled(){
-    //show only the items on the Toggleed chart
-    console.log(typeof currentToggleState);
-    if(currentToggleState == currentToggleState.all){
-        return false;
-    }
-        
-    
+
+
+function noteHandler(){
     const targetDiv = document.getElementById("dHira");
     const targetDivChildren = targetDiv.querySelectorAll('.character');
     console.log(targetDivChildren);
 
-    for(let x=0; x<targetDivChildren.length; x++){
-        if(!String(targetDivChildren[x].id).includes(currentToggleState)){
-            document.getElementById(String(targetDivChildren[x].id)).style.display = "none";
-            continue;
-        }
-
-        document.getElementById(String(targetDivChildren[x].id)).style.display = "flex";
-            
+    for(let i = 0; i < targetDivChildren.length; i++){
+        targetDivChildren[i].addEventListener('click',function(){
+            //this is important, without this the function is trying to call data that hasnt been created yet
+            if(this === undefined){
+                return false;
+            }
+            // this.style.display = "none";
+            console.log(`was clicked: ${this.id}`);
+            toggleOthers(this, targetDivChildren);
+        });
     }
+    
+}
+
+
+export function toggleOthers(eleToDisplay, listOfElements){
+    console.log(`toggle others`);
+    for(let i = 0; i < listOfElements.length; i++){
+        listOfElements[i].style.display = "none";
+    }
+    
+    displayCharHira.style.display = "flex";
+
+    document.getElementById("dRomajiHira").innerHTML = dicHira[eleToDisplay.id].romaji;
+    document.getElementById("dPronunciationHira").innerHTML = dicHira[eleToDisplay.id].pronunciation;
+    document.getElementById("dNotesHira").value = dicHira[eleToDisplay.id].notes;
+
+            // <p>
+            //     Romaji:
+            //     <div class="romaji" id="dRomajiHira">romaji</div>
+            // </p>
+
+            // <p>
+            //     Pronunciation:
+            //     <div class="pronunciation" id="dPronunciationHira">pronunciation</div>
+            // </p>
+
+            // <p>
+            //     Notes: 
+            //     <textarea class="notes" id="dNotesHira" rows="8" cols="25"> </textarea>
+            //     <button id="submitEdit">Submit Edit</button>
+            // </p>
 }
 // init();
