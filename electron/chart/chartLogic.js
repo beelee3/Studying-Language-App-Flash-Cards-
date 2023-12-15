@@ -1,3 +1,5 @@
+// import { dictHira, dictKata } from "../appHandler";
+
 var dicKata;
 var dicHira;
 const imgAddon = `../.`
@@ -18,7 +20,7 @@ const ToggleState = {
 
 
 export async function init(){
-    console.log(` chart.js`); 
+    console.log(` chartLogic.js`); 
     dicKata =  await window.electronApi.getDictKata();
     dicHira =  await window.electronApi.getDictHira();
 
@@ -121,10 +123,23 @@ export function toggleOthers(eleToDisplay, listOfElements){
     document.getElementById("dNotesHira").value = dicHira[eleToDisplay.id].notes;
 }
 
-export async function editNotes(romaji, newNotes){
-    console.log(`romaji: ${romaji}, newNotes: ${newNotes}`);
+export async function editNotes(dictType,romaji, newNotes){
+    // console.log(`romaji: ${romaji}, newNotes: ${newNotes}`);
+    console.log(`editNotes:${dicHira[romaji].notes} `);
+    console.log(typeof newNotes);
+    // console.log(`editNotes:${dicKata} `);
+    if(dictType == "hira")
+        dicHira[romaji].notes = newNotes;
 
-    
+    else if(dictType == "kata")
+        dicKata[romaji].notes = newNotes;
+
+    console.log(`editNotes 2:${dicHira[romaji].notes} `);
+    // console.log(`editNotes 2:${dicKata} `);
+
+    await window.electronApi.setNotes(dictType, romaji, newNotes);
+
+    //find a way to display the new changes
 }
 
 

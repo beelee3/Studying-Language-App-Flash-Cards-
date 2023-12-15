@@ -80,13 +80,13 @@ showButton.addEventListener('click', async ()=>{
 
 const submitEditButton = document.getElementById("submitEditHira");
 submitEditButton.addEventListener('click', async ()=>{
-    var newNotes = document.getElementById("dNotesHira").value;
-    var romaji = document.getElementById("dRomajiHira").innerHTML;
+    var newNotes = String(document.getElementById("dNotesHira").value);
+    var romaji = String(document.getElementById("dRomajiHira").innerHTML);
 
-    editNotes(romaji, newNotes);
+    editNotes("hira",romaji, newNotes);
 });
 
 
-
+console.log(`chart js`);
 init();
 

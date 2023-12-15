@@ -87,12 +87,16 @@ class Dictionary{
             }
         }
     }
-    //use this to rewrite and update the whole text file
+    //use this to rewrite and override the whole text file
     rewriteDictToFile(){
+        const stringSplitter = `--`
+        let stringFormat;
         for(let key in this.Dictionary){
-            let stringFormat = JSON.stringify(this.Dictionary[key],null,2);
-            writeObjectToFile(this.filePath, stringFormat);
+             stringFormat += stringSplitter+JSON.stringify(this.Dictionary[key],null,2);
+
+            // writeObjectToFile(this.filePath, stringFormat);
         }
+        writeToFile(this.filePath, stringFormat);
     }
 
     writeKeysToFile(){ //grab the img files and write the keys into textfile

@@ -9,7 +9,11 @@ getDictKata: ()=> ipcRenderer.invoke('get-kata-dict'),
 getDictKataKeys: ()=> ipcRenderer.invoke('get-kata-keys'),
 
 getChart: ()=> ipcRenderer.invoke('get-chart'),
+setNotes: (dictType, romaji, newNotes)=> ipcRenderer.send('set-notes',dictType, romaji, newNotes),
+
 });
+
+
 
 // ipcMain.handle('get-hira-dict', getDictHira);
 // ipcMain.handle('get-hira-keys', getDictHiraKeys);

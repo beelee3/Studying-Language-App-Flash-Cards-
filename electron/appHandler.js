@@ -15,6 +15,8 @@ function dicIpcHandlers(){
     ipcMain.handle('get-hira-keys', getDictHiraKeys);
     ipcMain.handle('get-kata-dict', getDictKata);
     ipcMain.handle('get-kata-keys', getDictKataKeys);
+
+    ipcMain.on('set-notes', setNotes);
 }
 
 async function getDictHira(){
@@ -37,6 +39,30 @@ async function getDictKata(){
 }
 async function getDictKataKeys(){
   return await dictKata.getKeyArr();
+}
+
+
+// async function setNotes(event, dictType, romaji, newNotes){
+async function setNotes(event, dictType, romaji, newNotes){
+
+  console.log(`setNotes call from appHandler`);
+
+  console.log(dictType, romaji, newNotes);
+  // console.log(`dictType`,dictType,`romaji ${romaji}, newNotes: ${newNotes}`);
+  if(dictType == "hira"){
+    dictHira.Dictionary[romaji].notes = newNotes;
+    dictHira.rewriteDictToFile();
+  }
+    
+    // dictHira[romaji].notes =  newNotes;
+
+  else if (dictType == "kata"){
+    dictKata.Dictionary[romaji].notes = newNotes;
+    dictHira.rewriteDictToFile();
+  }
+    
+    // dictKata[romaji].notes =  newNotes;
+  
 }
 
 module.exports = {dictHira,dictKata};
