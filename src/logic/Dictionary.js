@@ -90,12 +90,13 @@ class Dictionary{
     //use this to rewrite and override the whole text file
     rewriteDictToFile(){
         const stringSplitter = `--`
-        let stringFormat;
+        let stringFormat="";
         for(let key in this.Dictionary){
              stringFormat += stringSplitter+JSON.stringify(this.Dictionary[key],null,2);
 
             // writeObjectToFile(this.filePath, stringFormat);
         }
+        stringFormat = stringFormat.slice(2);
         writeToFile(this.filePath, stringFormat);
     }
 
