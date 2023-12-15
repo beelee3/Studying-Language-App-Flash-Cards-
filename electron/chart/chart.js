@@ -1,4 +1,4 @@
-import {showAll, init, displayCharHira} from "./chartLogic.js";
+import {showAll, init, displayCharHira, editNotes} from "./chartLogic.js";
 
 // var currentToggleState;
 const ToggleState = {
@@ -34,6 +34,8 @@ export function showToggled(){
         document.getElementById(String(targetDivChildren[x].id)).style.display = "flex";
         
     }
+
+    //do the same above for kata
 
 }
 
@@ -75,6 +77,16 @@ showButton.addEventListener('click', async ()=>{
     showAll();
 
 });
+
+const submitEditButton = document.getElementById("submitEditHira");
+submitEditButton.addEventListener('click', async ()=>{
+    var newNotes = document.getElementById("dNotesHira").value;
+    var romaji = document.getElementById("dRomajiHira").innerHTML;
+
+    editNotes(romaji, newNotes);
+});
+
+
 
 init();
 

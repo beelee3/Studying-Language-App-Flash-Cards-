@@ -116,25 +116,17 @@ export function toggleOthers(eleToDisplay, listOfElements){
     }
     
     displayCharHira.style.display = "flex";
-
     document.getElementById("dRomajiHira").innerHTML = dicHira[eleToDisplay.id].romaji;
     document.getElementById("dPronunciationHira").innerHTML = dicHira[eleToDisplay.id].pronunciation;
     document.getElementById("dNotesHira").value = dicHira[eleToDisplay.id].notes;
-
-            // <p>
-            //     Romaji:
-            //     <div class="romaji" id="dRomajiHira">romaji</div>
-            // </p>
-
-            // <p>
-            //     Pronunciation:
-            //     <div class="pronunciation" id="dPronunciationHira">pronunciation</div>
-            // </p>
-
-            // <p>
-            //     Notes: 
-            //     <textarea class="notes" id="dNotesHira" rows="8" cols="25"> </textarea>
-            //     <button id="submitEdit">Submit Edit</button>
-            // </p>
 }
+
+export async function editNotes(romaji, newNotes){
+    console.log(`romaji: ${romaji}, newNotes: ${newNotes}`);
+
+    
+}
+
+
+
 // init();
