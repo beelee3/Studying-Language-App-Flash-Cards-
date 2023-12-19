@@ -31,6 +31,31 @@ function writeToFile(filePath, stringFormat="this is dummy text"){
 }
 
 
+//send in the json stringify'd objects into oldString/newString
+function replaceTextInFile(filePath, oldString="old text", newString="new string"){
+    oldString = oldString.slice(1, oldString.length-1);
+    newString = newString.slice(1,newString.length-1);
+
+    console.log(`replace text oldString: `,oldString);
+    console.log(`replace text newString: `,newString);
+
+    fs.readFile(filePath, 'utf-8', (err, data)=>{
+        var formatted = data.replace(oldString, newString);
+
+        fs.writeFile(filePath, formatted, 'utf-8', (err)=>{
+            if (err) console.log(err);
+        });
+    });
+
+}
+
+function stringifyObject(obj){
+    return JSON.stringify(obj,null,2);
+}
+
+
+
+
 ///////////////new stuff
 function writeObjectToFile(filePath, stringFormat="this is dummy text"){
     //if the amount returned is 0, writeFileSync
@@ -48,4 +73,9 @@ function writeObjectToFile(filePath, stringFormat="this is dummy text"){
     }
 }
 
-module.exports = {writeToTextFile,writeToFile,writeObjectToFile};
+module.exports = {writeToTextFile,
+    writeToFile,
+    writeObjectToFile,
+    replaceTextInFile,
+    stringifyObject,
+};

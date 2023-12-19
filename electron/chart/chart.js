@@ -1,14 +1,22 @@
-import {showAll, init, displayCharHira, editNotes, display} from "./chartLogic.js";
+import {
+    showAll, 
+    init, 
+    displayCharHira, 
+    editNotes, 
+    display, 
+    ToggleState, 
+    // currentToggleState
+} from "./chartLogic.js";
 
 // var currentToggleState;
-const ToggleState = {
-    all:'all',
-    a: 'a',
-    i: 'i',
-    u: 'u',
-    e: 'e',
-    o: 'o',
-};
+// const ToggleState = {
+//     all:'all',
+//     a: 'a',
+//     i: 'i',
+//     u: 'u',
+//     e: 'e',
+//     o: 'o',
+// };
 
 var currentToggleState;
 

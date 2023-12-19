@@ -1,5 +1,6 @@
 const {ipcMain} = require('electron')
 const Dictionary = require('../src/logic/Dictionary');
+// const Character = require('../src/logic/Dictionary');
 
 var dictHira = new Dictionary("hiragana");
 var dictKata = new Dictionary("katakana");
@@ -50,15 +51,19 @@ async function setNotes(event, dictType, romaji, newNotes){
   console.log(dictType, romaji, newNotes);
   // console.log(`dictType`,dictType,`romaji ${romaji}, newNotes: ${newNotes}`);
   if(dictType == "hira"){
-    dictHira.Dictionary[romaji].notes = newNotes;
-    dictHira.rewriteDictToFile();
+
+    var newObj = structuredClone(dictHira.Dictionary[romaji]);
+    newObj.notes = newNotes;
+    dictHira.replaceNotesInFile(dictHira.Dictionary[romaji], newObj)
   }
     
     // dictHira[romaji].notes =  newNotes;
 
   else if (dictType == "kata"){
-    dictKata.Dictionary[romaji].notes = newNotes;
-    dictHira.rewriteDictToFile();
+
+    var newObj = structuredClone(dictKata.Dictionary[romaji]);
+    newObj.notes = newNotes;
+    dictKata.replaceNotesInFile(dictKata.Dictionary[romaji], newObj)
   }
     
     // dictKata[romaji].notes =  newNotes;

@@ -1,8 +1,20 @@
 // import {getKeysFromTextFile, getDictFromImage, doesFileExist, getInitFromTextFile, splitJsonIntoCharacterArray} from "./ReadFile.js";
-const {getKeysFromTextFile,getDictFromImage,doesFileExist,getInitFromTextFile,splitJsonIntoCharacterArray} = require('./ReadFile');
+const {
+    getKeysFromTextFile,
+    getDictFromImage,
+    doesFileExist,
+    getInitFromTextFile,
+    splitJsonIntoCharacterArray
+} = require('./ReadFile');
 
 // import { writeToFile, writeToTextFile, writeObjectToFile } from "./WriteFile.js";
-const {writeToFile,writeToTextFile, writeObjectToFile} = require('./WriteFile');
+const {
+    writeToFile,
+    writeToTextFile, 
+    writeObjectToFile, 
+    stringifyObject,
+    replaceTextInFile
+} = require('./WriteFile');
 
 
 class Character{
@@ -99,6 +111,18 @@ class Dictionary{
         stringFormat = stringFormat.slice(2);
         writeToFile(this.filePath, stringFormat);
     }
+
+    replaceNotesInFile(oldObj, newObj){
+        var oldString = stringifyObject(oldObj);
+        // console.log(oldString);
+
+        var newString = stringifyObject(newObj);
+        // console.log(newString);
+
+        replaceTextInFile(this.filePath, oldString, newString);
+    }
+
+
 
     writeKeysToFile(){ //grab the img files and write the keys into textfile
         for(let k in this.Dictionary){
