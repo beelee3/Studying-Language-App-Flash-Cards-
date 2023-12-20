@@ -55,6 +55,8 @@ async function setNotes(event, dictType, romaji, newNotes){
     var newObj = structuredClone(dictHira.Dictionary[romaji]);
     newObj.notes = newNotes;
     dictHira.replaceNotesInFile(dictHira.Dictionary[romaji], newObj)
+
+    dictHira.Dictionary[romaji].notes = newNotes;
   }
     
     // dictHira[romaji].notes =  newNotes;
@@ -64,6 +66,8 @@ async function setNotes(event, dictType, romaji, newNotes){
     var newObj = structuredClone(dictKata.Dictionary[romaji]);
     newObj.notes = newNotes;
     dictKata.replaceNotesInFile(dictKata.Dictionary[romaji], newObj)
+    
+    dictKata.Dictionary[romaji].notes = newNotes;
   }
     
     // dictKata[romaji].notes =  newNotes;

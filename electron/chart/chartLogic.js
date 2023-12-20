@@ -38,33 +38,63 @@ export async function init(){
     importedArrayKata = [];
 
     for(var key in dicHira){
+        //this is the container for the whole character Element
         const divElement  = document.createElement("div");
         divElement.className = "centerV centerH character";
         divElement.id = `${key}`;
 
-        const paraElement  = document.createElement("p");
+        //container of the character content
+        const divCharacter = document.createElement("div");
+
+        //romaji element block
+        const paraRom  = document.createElement("p");
+        paraRom.innerText = "Romaji: ";
+        const romSpan = document.createElement("span");
+        romSpan.className = "boldThis"
+        romSpan.id = `dRomaji${key}`;
+        romSpan.innerText = `${dicHira[key].romaji}`;
+        //append
+        divCharacter.appendChild(paraRom);
+        paraRom.appendChild(romSpan);
+
+        //pronunciation element block
+        const paraPro  = document.createElement("p");
+        paraPro.innerText = "Pronunciation: ";
+        const proSpan = document.createElement("span");
+        proSpan.className = "boldThis"
+        proSpan.id = `dPronun${key}`;
+        proSpan.innerText = `${dicHira[key].pronunciation}`
+        //append
+        divCharacter.appendChild(paraPro);
+        paraPro.appendChild(proSpan);
+
+        //note element block
+        const paraNote  = document.createElement("p");
+        paraNote.innerText = "Notes: ";
+        const noteSpan = document.createElement("span");
+        noteSpan.className = "boldThis"
+        noteSpan.id = `dNotes${key}`;
+        noteSpan.innerText = `${dicHira[key].notes}`;
+        //append
+        divCharacter.appendChild(paraNote);
+        paraNote.appendChild(noteSpan);
+        
 
         //content that goes into p tag
         const nodeImg = document.createElement("img")
             nodeImg.src = imgAddon+dicHira[key].imgSrc;
             nodeImg.id = "imgChart";
 
-        // const node  = document.createTextNode(`Romaji: [${dicHira[key].romaji}]  \n Pronunciation: [${dicHira[key].pronunciation}] \n Notes: [${dicHira[key].notes}]`);
-        const node1  = document.createTextNode(`Romaji: [${dicHira[key].romaji}]`);
-        const node2  = document.createTextNode(`Pronunciation: [${dicHira[key].pronunciation}]`);
-        const node3  = document.createTextNode(`Notes: [${dicHira[key].notes}]`);
-
-        //append textNode contents into p
-        // paraElement.appendChild(node);
-        paraElement.appendChild(node1);
-        paraElement.appendChild(document.createElement("br"));
-        paraElement.appendChild(node2);
-        paraElement.appendChild(document.createElement("br"));
-        paraElement.appendChild(node3);
+        
 
         //append img/p into div
-        divElement.appendChild(nodeImg)
-        divElement.appendChild(paraElement);
+        divElement.appendChild(nodeImg);
+        divElement.appendChild(divCharacter);
+        // divElement.appendChild(paraElement);
+            //append divCharacter into divElement
+                //append paraRom,paraPro,paraNote into divCharacter
+                    //append span with classNames of = "dRomaji", "dPronun", "dNotes" into >> paraRom, paraPro, paraNote
+
          //append div into targeted div
         targetDiv.appendChild(divElement);
 
@@ -73,6 +103,7 @@ export async function init(){
         importedArrayHira.push(dicHira[key]);
     }
 }
+
 
 //render functions
 //notes function 
@@ -141,46 +172,21 @@ export async function editNotes(dictType,romaji, newNotes){
 
     await window.electronApi.setNotes(dictType, romaji, newNotes);
     
-    updateAndHide();
+    update();
 
     //find a way to display the new changes
 }
 
-export async function updateAndHide(){
-    var targetDiv = document.getElementById("dHira");
-
+export async function update(){
     for(var key in dicHira){
-        const divElement  = document.createElement("div");
-        divElement.className = "centerV centerH character";
-        divElement.id = `${key}`;
+       const romajiEle = document.getElementById(`dRomaji${key}`);
+       romajiEle.innerText = `${dicHira[key].romaji}` 
+       
+       const pronunEle = document.getElementById(`dPronun${key}`);
+       pronunEle.innerText = `${dicHira[key].pronunciation}`
 
-        const paraElement  = document.createElement("p");
-
-        //content that goes into p tag
-        const nodeImg = document.createElement("img")
-            nodeImg.src = imgAddon+dicHira[key].imgSrc;
-            nodeImg.id = "imgChart";
-
-        // const node  = document.createTextNode(`Romaji: [${dicHira[key].romaji}]  \n Pronunciation: [${dicHira[key].pronunciation}] \n Notes: [${dicHira[key].notes}]`);
-        const node1  = document.createTextNode(`Romaji: [${dicHira[key].romaji}]`);
-        const node2  = document.createTextNode(`Pronunciation: [${dicHira[key].pronunciation}]`);
-        const node3  = document.createTextNode(`Notes: [${dicHira[key].notes}]`);
-
-        //append textNode contents into p
-        // paraElement.appendChild(node);
-        paraElement.appendChild(node1);
-        paraElement.appendChild(document.createElement("br"));
-        paraElement.appendChild(node2);
-        paraElement.appendChild(document.createElement("br"));
-        paraElement.appendChild(node3);
-
-        //append img/p into div
-        divElement.appendChild(nodeImg)
-        divElement.appendChild(paraElement);
-         //append div into targeted div
-        targetDiv.appendChild(divElement);
-        divElement.style.display = "none";
-        //add elements to an array;
+       const notesEle = document.getElementById(`dNotes${key}`);
+       notesEle.innerText = `${dicHira[key].notes}`
     }
 
 }

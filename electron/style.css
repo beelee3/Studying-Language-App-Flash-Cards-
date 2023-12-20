@@ -1,3 +1,13 @@
+/* p{
+    border: 1px solid black;
+}
+div{
+    border: 1px solid red;
+}
+b{
+    text-align: center;
+} */
+
 body{
     background-color: #FDF7E4;
 }
@@ -83,7 +93,8 @@ img{
     height: 0;
 }
 
-.romaji, .pronunciation, .notes{
+.romaji, .pronunciation, .notes, 
+.dRomaji, .dPronun, .dNotes, .boldThis{
     font-weight: bold;
     background-color: beige;
 }
@@ -93,6 +104,13 @@ img{
     padding: 25px;
     flex-basis: 30%;
 }
+
 #dCharHira > p{
     margin: 10px;
+}
+
+.characterContainer{
+    display: flex;
+    flex-basis: 20%;
+    flex-direction: column;
 }
