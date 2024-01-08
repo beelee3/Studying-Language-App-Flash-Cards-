@@ -45,10 +45,12 @@ class Dictionary{
         if(type != "hiragana" && type != "katakana" && type != "vocab") type = "invalid";
         this.type = type;
 
-        this.fileName = `dict${this.type}.txt`;
+        // this.fileName = `dict${this.type}.txt`;
+        this.fileName = `dict_${this.type}.txt`;
         this.filePath = `./src/logic/textFiles/${this.fileName}`;
         
-        this.keyName = `KEY${this.type}.txt`;
+        // this.keyName = `KEY${this.type}.txt`;
+        this.keyName = `KEY_${this.type}.txt`;
         this.keyPath = `./src/logic/textFiles/${this.keyName}`;
         this.keyArr  = [];
 

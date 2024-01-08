@@ -4,9 +4,14 @@ var dicKata;
 var dicHira;
 const imgAddon = `../.`
 
-export const displayCharHira = document.getElementById("dCharHira");
+const dRomaji = `dRomaji`;
+const dPronun = `dPronun`;
+const dNotes = `dNotes`;
+const hira = `hira`;
+const kata = `kata`;
 
-export var importedArrayHira = [], importedArrayKata = [];
+export const displayCharHira = document.getElementById("dCharHira");
+export const displayCharKata = document.getElementsByName("dCharKata");
 
 export const ToggleState = {
     all:'all',
@@ -27,21 +32,19 @@ export async function init(){
     console.log(dicHira);
     console.log(dicKata);
     displayCharHira.style.display = "none";
-    
+    // displayCharKata.style.display = "none";
     display();
     noteHandler();
  }
 
  export function display(){
     var targetDiv = document.getElementById("dHira");
-    importedArrayHira = [];
-    importedArrayKata = [];
 
     for(var key in dicHira){
         //this is the container for the whole character Element
         const divElement  = document.createElement("div");
         divElement.className = "centerV centerH character";
-        divElement.id = `${key}`;
+        divElement.id = `${hira}_${key}`;
 
         //container of the character content
         const divCharacter = document.createElement("div");
@@ -51,7 +54,7 @@ export async function init(){
         paraRom.innerText = "Romaji: ";
         const romSpan = document.createElement("span");
         romSpan.className = "boldThis"
-        romSpan.id = `dRomaji${key}`;
+        romSpan.id = `${dRomaji}_${hira}_${key}`;
         romSpan.innerText = `${dicHira[key].romaji}`;
         //append
         divCharacter.appendChild(paraRom);
@@ -62,7 +65,7 @@ export async function init(){
         paraPro.innerText = "Pronunciation: ";
         const proSpan = document.createElement("span");
         proSpan.className = "boldThis"
-        proSpan.id = `dPronun${key}`;
+        proSpan.id = `${dPronun}_${hira}_${key}`;
         proSpan.innerText = `${dicHira[key].pronunciation}`
         //append
         divCharacter.appendChild(paraPro);
@@ -73,7 +76,7 @@ export async function init(){
         paraNote.innerText = "Notes: ";
         const noteSpan = document.createElement("span");
         noteSpan.className = "boldThis"
-        noteSpan.id = `dNotes${key}`;
+        noteSpan.id = `${dNotes}_${hira}_${key}`;
         noteSpan.innerText = `${dicHira[key].notes}`;
         //append
         divCharacter.appendChild(paraNote);
@@ -82,10 +85,8 @@ export async function init(){
 
         //content that goes into p tag
         const nodeImg = document.createElement("img")
-            nodeImg.src = imgAddon+dicHira[key].imgSrc;
-            nodeImg.id = "imgChart";
-
-        
+        nodeImg.src = imgAddon+dicHira[key].imgSrc;
+        nodeImg.id = "imgChart";
 
         //append img/p into div
         divElement.appendChild(nodeImg);
@@ -97,10 +98,67 @@ export async function init(){
 
          //append div into targeted div
         targetDiv.appendChild(divElement);
+    }
 
-        //add elements to an array;
+    targetDiv = document.getElementById("dKata");
+    for(var key in dicKata){
+        //this is the container for the whole character Element
+        const divElement  = document.createElement("div");
+        divElement.className = "centerV centerH character";
+        divElement.id = `${kata}_${key}`;
 
-        importedArrayHira.push(dicHira[key]);
+        //container of the character content
+        const divCharacter = document.createElement("div");
+
+        //romaji element block
+        const paraRom  = document.createElement("p");
+        paraRom.innerText = "Romaji: ";
+        const romSpan = document.createElement("span");
+        romSpan.className = "boldThis"
+        romSpan.id = `${dRomaji}_${kata}_${key}`;
+        romSpan.innerText = `${dicKata[key].romaji}`;
+        //append
+        divCharacter.appendChild(paraRom);
+        paraRom.appendChild(romSpan);
+
+        //pronunciation element block
+        const paraPro  = document.createElement("p");
+        paraPro.innerText = "Pronunciation: ";
+        const proSpan = document.createElement("span");
+        proSpan.className = "boldThis"
+        proSpan.id = `${dPronun}_${kata}_${key}`;
+        proSpan.innerText = `${dicKata[key].pronunciation}`
+        //append
+        divCharacter.appendChild(paraPro);
+        paraPro.appendChild(proSpan);
+
+        //note element block
+        const paraNote  = document.createElement("p");
+        paraNote.innerText = "Notes: ";
+        const noteSpan = document.createElement("span");
+        noteSpan.className = "boldThis"
+        noteSpan.id = `${dNotes}_${kata}_${key}`;
+        noteSpan.innerText = `${dicKata[key].notes}`;
+        //append
+        divCharacter.appendChild(paraNote);
+        paraNote.appendChild(noteSpan);
+        
+
+        //content that goes into p tag
+        const nodeImg = document.createElement("img")
+        nodeImg.src = imgAddon+dicKata[key].imgSrc;
+        nodeImg.id = "imgChart";
+
+        //append img/p into div
+        divElement.appendChild(nodeImg);
+        divElement.appendChild(divCharacter);
+        // divElement.appendChild(paraElement);
+            //append divCharacter into divElement
+                //append paraRom,paraPro,paraNote into divCharacter
+                    //append span with classNames of = "dRomaji", "dPronun", "dNotes" into >> paraRom, paraPro, paraNote
+
+         //append div into targeted div
+        targetDiv.appendChild(divElement);
     }
 }
 
@@ -117,6 +175,7 @@ export function showAll(){
     const targetDiv = document.getElementById("dHira");
     const targetDivChildren = targetDiv.querySelectorAll('.character');
     displayCharHira.style.display = "none";
+    // displayCharKata.style.display = "none";
 
     for(let i=0; i<targetDivChildren.length; i++){
         targetDivChildren[i].style.display = "flex";
@@ -125,8 +184,8 @@ export function showAll(){
 
 
 function noteHandler(){
-    const targetDiv = document.getElementById("dHira");
-    const targetDivChildren = targetDiv.querySelectorAll('.character');
+    var targetDiv = document.getElementById("dHira");
+    var targetDivChildren = targetDiv.querySelectorAll('.character');
     console.log(targetDivChildren);
 
     for(let i = 0; i < targetDivChildren.length; i++){
@@ -137,24 +196,50 @@ function noteHandler(){
             }
             // this.style.display = "none";
             console.log(`was clicked: ${this.id}`);
-            toggleOthers(this, targetDivChildren);
+            toggleOthers(this, targetDivChildren,targetDiv.id);
         });
     }
+
+    var targetDiv2 = document.getElementById("dKata");
+    var targetDivChildren2 = targetDiv2.querySelectorAll('.character');
+
+    for(let i = 0; i < targetDivChildren2.length; i++){
+        targetDivChildren2[i].addEventListener('click',function(){
+            //this is important, without this the function is trying to call data that hasnt been created yet
+            if(this === undefined){
+                return false;
+            }
+            // this.style.display = "none";
+            console.log(`was clicked: ${this.id}`);
+            toggleOthers(this, targetDivChildren2, targetDiv2.id);
+        });
+    }
+
+
     
 }
 
 
-export function toggleOthers(eleToDisplay, listOfElements){
+export function toggleOthers(eleToDisplay, listOfElements, parentId){
     console.log(`toggle others`);
     for(let i = 0; i < listOfElements.length; i++){
         listOfElements[i].style.display = "none";
     }
-    
+    var tempArr = eleToDisplay.id.split("_");
+    var newEleId = tempArr[1];
     displayCharHira.style.display = "flex";
-    document.getElementById("dRomajiHira").innerHTML = dicHira[eleToDisplay.id].romaji;
-    document.getElementById("dPronunciationHira").innerHTML = dicHira[eleToDisplay.id].pronunciation;
-    document.getElementById("dNotesHira").value = dicHira[eleToDisplay.id].notes;
+    // displayCharKata.style.display = "flex";
+    
+    document.getElementById(`imgChart_${parentId}`).src = imgAddon + dicHira[newEleId].imgSrc;
+    document.getElementById(`Romaji_${parentId}`).innerHTML = dicHira[newEleId].romaji;
+    document.getElementById(`Pronunciation_${parentId}`).innerHTML = dicHira[newEleId].pronunciation;
+    document.getElementById(`Notes_${parentId}`).value = dicHira[newEleId].notes;
 }
+//     document.getElementById("dRomajiHira").innerHTML = dicHira[eleToDisplay.id].romaji;
+//     document.getElementById("dPronunciationHira").innerHTML = dicHira[eleToDisplay.id].pronunciation;
+//     document.getElementById("dNotesHira").value = dicHira[eleToDisplay.id].notes;
+// }
+
 
 export async function editNotes(dictType,romaji, newNotes){
     // console.log(`romaji: ${romaji}, newNotes: ${newNotes}`);
@@ -179,14 +264,14 @@ export async function editNotes(dictType,romaji, newNotes){
 
 export async function update(){
     for(var key in dicHira){
-       const romajiEle = document.getElementById(`dRomaji${key}`);
-       romajiEle.innerText = `${dicHira[key].romaji}` 
+       const romajiEle = document.getElementById(`${dRomaji}_${hira}_${key}`);
+       romajiEle.innerText = `${dicHira[key].romaji}`;
        
-       const pronunEle = document.getElementById(`dPronun${key}`);
-       pronunEle.innerText = `${dicHira[key].pronunciation}`
+       const pronunEle = document.getElementById(`${dPronun}_${hira}_${key}`);
+       pronunEle.innerText = `${dicHira[key].pronunciation}`;
 
-       const notesEle = document.getElementById(`dNotes${key}`);
-       notesEle.innerText = `${dicHira[key].notes}`
+       const notesEle = document.getElementById(`${dNotes}_${hira}_${key}`);
+       notesEle.innerText = `${dicHira[key].notes}`;
     }
 
 }

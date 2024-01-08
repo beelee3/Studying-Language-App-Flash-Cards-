@@ -4,7 +4,8 @@ import {
     displayCharHira, 
     editNotes, 
     display, 
-    ToggleState, 
+    ToggleState,
+    displayCharKata, 
     // currentToggleState
 } from "./chartLogic.js";
 
@@ -23,26 +24,45 @@ var currentToggleState;
 
 export function showToggled(){
     //show only the items on the Toggleed chart
-    console.log(typeof currentToggleState);
+    console.log("current State: ", currentToggleState);
     if(currentToggleState == currentToggleState.all){
         return false;
     }
-        
+    
     displayCharHira.style.display = "none";
     const targetDiv = document.getElementById("dHira");
     const targetDivChildren = targetDiv.querySelectorAll('.character');
-    console.log(targetDivChildren);
+    // console.log(targetDivChildren);
 
     for(let x=0; x<targetDivChildren.length; x++){
-        if(!String(targetDivChildren[x].id).includes(currentToggleState)){
+        //targetDivChildren id = hira_<id> or kata_<id>
+        var targetChild = String(targetDivChildren[x].id).split("_");
+
+        if(!targetChild[1].includes(currentToggleState)){
             document.getElementById(String(targetDivChildren[x].id)).style.display = "none";
             continue;
         }
-
-        document.getElementById(String(targetDivChildren[x].id)).style.display = "flex";
         
+        document.getElementById(String(targetDivChildren[x].id)).style.display = "flex";
     }
 
+    // displayCharKata.style.display = "none";
+    // const targetDiv2 = document.getElementById("dKata");
+    // const targetDivChildren2 = targetDiv2.querySelectorAll('.character');
+    // // console.log(targetDivChildren);
+
+    // for(let x=0; x<targetDivChildren.length; x++){
+    //     //targetDivChildren id = hira_<id> or kata_<id>
+    //     var targetChild = String(targetDivChildren2[x].id).split("_");
+
+    //     if(!targetChild[1].includes(currentToggleState)){
+    //         document.getElementById(String(targetDivChildren2[x].id)).style.display = "none";
+    //         continue;
+    //     }
+        
+    //     document.getElementById(String(targetDivChildren2[x].id)).style.display = "flex";
+    // }
+    
     //do the same above for kata
 
 }
@@ -86,13 +106,23 @@ showButton.addEventListener('click', async ()=>{
 
 });
 
-const submitEditButton = document.getElementById("submitEditHira");
-submitEditButton.addEventListener('click', async ()=>{
-    var newNotes = String(document.getElementById("dNotesHira").value);
-    var romaji = String(document.getElementById("dRomajiHira").innerHTML);
+const submitEditButtonHira = document.getElementById("submitEdit_dHira");
+submitEditButtonHira.addEventListener('click', async ()=>{
+    var newNotes = String(document.getElementById("Notes_dHira").value);
+    var romaji = String(document.getElementById("Romaji_dHira").innerHTML);
 
     editNotes("hira",romaji, newNotes);
 });
+
+const submitEditButtonKata = document.getElementById("submitEdit_dKata");
+submitEditButtonKata.addEventListener('click', async ()=>{
+    var newNotes = String(document.getElementById("Notes_dKata").value);
+    var romaji = String(document.getElementById("Romaji_dKata").innerHTML);
+
+    editNotes("kata",romaji, newNotes);
+});
+
+
 
 
 console.log(`chart js`);
