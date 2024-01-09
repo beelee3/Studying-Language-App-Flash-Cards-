@@ -11,7 +11,7 @@ const hira = `hira`;
 const kata = `kata`;
 
 export const displayCharHira = document.getElementById("dCharHira");
-export const displayCharKata = document.getElementsByName("dCharKata");
+export const displayCharKata = document.getElementById("dCharKata");
 
 export const ToggleState = {
     all:'all',
@@ -175,10 +175,17 @@ export function showAll(){
     const targetDiv = document.getElementById("dHira");
     const targetDivChildren = targetDiv.querySelectorAll('.character');
     displayCharHira.style.display = "none";
-    // displayCharKata.style.display = "none";
-
     for(let i=0; i<targetDivChildren.length; i++){
         targetDivChildren[i].style.display = "flex";
+    }
+
+
+
+    const targetDiv2 = document.getElementById("dKata");
+    const targetDivChildren2 = targetDiv2.querySelectorAll('.character');
+    displayCharKata.style.display = "none";
+    for(let i=0; i<targetDivChildren2.length; i++){
+        targetDivChildren2[i].style.display = "flex";
     }
 }
 
@@ -230,15 +237,26 @@ export function toggleOthers(eleToDisplay, listOfElements, parentId){
     displayCharHira.style.display = "flex";
     // displayCharKata.style.display = "flex";
     
-    document.getElementById(`imgChart_${parentId}`).src = imgAddon + dicHira[newEleId].imgSrc;
-    document.getElementById(`Romaji_${parentId}`).innerHTML = dicHira[newEleId].romaji;
-    document.getElementById(`Pronunciation_${parentId}`).innerHTML = dicHira[newEleId].pronunciation;
-    document.getElementById(`Notes_${parentId}`).value = dicHira[newEleId].notes;
+    var tempDic = {};
+    if(parentId == "dKata"){
+        tempDic = dicKata;
+    }
+    else if (parentId == "dHira"){
+        tempDic = dicHira;
+    }
+
+    document.getElementById(`imgChart_${parentId}`).src = imgAddon + tempDic[newEleId].imgSrc;
+    document.getElementById(`Romaji_${parentId}`).innerHTML = tempDic[newEleId].romaji;
+    document.getElementById(`Pronunciation_${parentId}`).innerHTML = tempDic[newEleId].pronunciation;
+    document.getElementById(`Notes_${parentId}`).value = tempDic[newEleId].notes;
+
+
+    // document.getElementById(`imgChart_${parentId}`).src = imgAddon + dicHira[newEleId].imgSrc;
+    // document.getElementById(`Romaji_${parentId}`).innerHTML = dicHira[newEleId].romaji;
+    // document.getElementById(`Pronunciation_${parentId}`).innerHTML = dicHira[newEleId].pronunciation;
+    // document.getElementById(`Notes_${parentId}`).value = dicHira[newEleId].notes;
 }
-//     document.getElementById("dRomajiHira").innerHTML = dicHira[eleToDisplay.id].romaji;
-//     document.getElementById("dPronunciationHira").innerHTML = dicHira[eleToDisplay.id].pronunciation;
-//     document.getElementById("dNotesHira").value = dicHira[eleToDisplay.id].notes;
-// }
+
 
 
 export async function editNotes(dictType,romaji, newNotes){

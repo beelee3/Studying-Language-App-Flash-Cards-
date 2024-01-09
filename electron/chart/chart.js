@@ -46,22 +46,22 @@ export function showToggled(){
         document.getElementById(String(targetDivChildren[x].id)).style.display = "flex";
     }
 
-    // displayCharKata.style.display = "none";
-    // const targetDiv2 = document.getElementById("dKata");
-    // const targetDivChildren2 = targetDiv2.querySelectorAll('.character');
-    // // console.log(targetDivChildren);
+    displayCharKata.style.display = "none";
+    const targetDiv2 = document.getElementById("dKata");
+    const targetDivChildren2 = targetDiv2.querySelectorAll('.character');
+    // console.log(targetDivChildren);
 
-    // for(let x=0; x<targetDivChildren.length; x++){
-    //     //targetDivChildren id = hira_<id> or kata_<id>
-    //     var targetChild = String(targetDivChildren2[x].id).split("_");
+    for(let x=0; x<targetDivChildren2.length; x++){
+        //targetDivChildren id = hira_<id> or kata_<id>
+        var targetChild = String(targetDivChildren2[x].id).split("_");
 
-    //     if(!targetChild[1].includes(currentToggleState)){
-    //         document.getElementById(String(targetDivChildren2[x].id)).style.display = "none";
-    //         continue;
-    //     }
+        if(!targetChild[1].includes(currentToggleState)){
+            document.getElementById(String(targetDivChildren2[x].id)).style.display = "none";
+            continue;
+        }
         
-    //     document.getElementById(String(targetDivChildren2[x].id)).style.display = "flex";
-    // }
+        document.getElementById(String(targetDivChildren2[x].id)).style.display = "flex";
+    }
     
     //do the same above for kata
 
