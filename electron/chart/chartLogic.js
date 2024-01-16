@@ -32,7 +32,7 @@ export async function init(){
     console.log(dicHira);
     console.log(dicKata);
     displayCharHira.style.display = "none";
-    // displayCharKata.style.display = "none";
+    displayCharKata.style.display = "none";
     display();
     noteHandler();
  }
@@ -234,15 +234,15 @@ export function toggleOthers(eleToDisplay, listOfElements, parentId){
     }
     var tempArr = eleToDisplay.id.split("_");
     var newEleId = tempArr[1];
-    displayCharHira.style.display = "flex";
-    // displayCharKata.style.display = "flex";
     
     var tempDic = {};
     if(parentId == "dKata"){
         tempDic = dicKata;
+        displayCharKata.style.display = "flex";
     }
     else if (parentId == "dHira"){
         tempDic = dicHira;
+        displayCharHira.style.display = "flex";
     }
 
     document.getElementById(`imgChart_${parentId}`).src = imgAddon + tempDic[newEleId].imgSrc;
@@ -290,6 +290,17 @@ export async function update(){
 
        const notesEle = document.getElementById(`${dNotes}_${hira}_${key}`);
        notesEle.innerText = `${dicHira[key].notes}`;
+    }
+    
+    for(var key in dicKata){
+       const romajiEle = document.getElementById(`${dRomaji}_${kata}_${key}`);
+       romajiEle.innerText = `${dicKata[key].romaji}`;
+       
+       const pronunEle = document.getElementById(`${dPronun}_${kata}_${key}`);
+       pronunEle.innerText = `${dicKata[key].pronunciation}`;
+
+       const notesEle = document.getElementById(`${dNotes}_${kata}_${key}`);
+       notesEle.innerText = `${dicKata[key].notes}`;
     }
 
 }

@@ -99,13 +99,13 @@ img{
     background-color: beige;
 }
 
-#dCharHira{
+#dCharHira, #dCharKata{
     margin: 25px;
     padding: 25px;
     flex-basis: 30%;
 }
 
-#dCharHira > p{
+#dCharHira > p, #dCharKata > p{
     margin: 10px;
 }
 
