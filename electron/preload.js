@@ -11,6 +11,8 @@ getDictKataKeys: ()=> ipcRenderer.invoke('get-kata-keys'),
 getChart: ()=> ipcRenderer.invoke('get-chart'),
 setNotes: (dictType, romaji, newNotes)=> ipcRenderer.send('set-notes',dictType, romaji, newNotes),
 
+getQuiz: ()=> ipcRenderer.invoke('get-quiz'),
+
 });
 
 

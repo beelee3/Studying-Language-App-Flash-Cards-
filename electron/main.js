@@ -51,6 +51,7 @@ app.whenReady().then(() => {
   initDict();//appHandler.js
   dicIpcHandlers(); //from  appHandler.jks
   ipcMain.handle('get-chart', createChartWindow);
+  ipcMain.handle('get-quiz', createQuizWindow);
   createWindow()
 
   // ipcMain.on('get-hira-dict', getDictHira);
@@ -86,4 +87,15 @@ const createChartWindow = () => {
   });
 
     childWin.loadFile('./electron/chart/chart.html');
+}
+const createQuizWindow = () => {
+  const childWin = new BrowserWindow({
+    width: 1280,
+    height: 960,
+    webPreferences: {
+      preload: path.join(__dirname, 'preload.js')
+    }
+  });
+
+    childWin.loadFile('./electron/quiz/quiz.html');
 }
