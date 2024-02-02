@@ -1,7 +1,13 @@
+// is an obj that hosts an array of dictionarys
 export var mainSelector;
+
+//selectIterator = selector for dictionary ex. hira/kata/vocab
 export var selectorIterator = 0;
+
+//iterator within the selected dictionary
 export var iterator = 0;
 
+const imgAddon = `../.`
 
 
 
@@ -29,6 +35,30 @@ function parseDicIntoArray(dictionary_to_parse){
     return dicArr;
 }
 
+export function select_hiragana(){
+    selectorIterator = 0;
+}
+export function select_katakana(){
+    selectorIterator = 1;
+}
+
+export function iterator_increment(){
+    if(iterator <= mainSelector.objDictionary[selectorIterator].dictionaryObjData.length -1){
+        iterator += 1;
+    }
+    console.log(`iterator ${iterator}`);
+}
+
+export function iterator_decrement(){
+    if(iterator > 0){
+        iterator -= 1;
+    }
+    console.log(`iterator ${iterator}`);
+}
+
+export function iterator_reset(){
+    iterator = 0;
+}
 
 export function displayInfo(){
     console.log(`display call`);
@@ -48,12 +78,17 @@ export async function init(){
     console.log(hArr);
     const hiraArr = parseDicIntoArray(hArr);
     var objDic_hira = new objDic(hiraArr,"hiragana");
+    //slot 0 
     mainSelector.objDictionary.push(objDic_hira);
     
     var kArr;
-    kArr = await window.electronApi.getDictHira();
+    kArr = await window.electronApi.getDictKata();
     console.log(kArr);
     const kataArr = parseDicIntoArray(kArr);
     var objDic_kata = new objDic(kataArr,"katakana");
+    //slot 1
     mainSelector.objDictionary.push(objDic_kata);
+
+
+    displayInfo();
 }
