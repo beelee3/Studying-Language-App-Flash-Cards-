@@ -35,6 +35,24 @@ function parseDicIntoArray(dictionary_to_parse){
     return dicArr;
 }
 
+//quiz logic
+export function checkAnswer(user_input_romanji, user_input_pronunciation){
+    user_input_pronunciation = String(user_input_pronunciation).replace(" ","");
+    user_input_romanji = String(user_input_romanji).replace(" ","");
+
+    if(user_input_pronunciation != mainSelector.objDictionary[selectorIterator].dictionaryObjData[iterator].pronunciation
+        || 
+        user_input_romanji != mainSelector.objDictionary[selectorIterator].dictionaryObjData[iterator].romaji){
+            
+        console.log(`user: ${user_input_pronunciation}, answer: ${ mainSelector.objDictionary[selectorIterator].dictionaryObjData[iterator].pronunciation}`);
+        console.log(`user: ${user_input_romanji}, answer: ${ mainSelector.objDictionary[selectorIterator].dictionaryObjData[iterator].romaji}`);
+        return false;
+    }
+    return true;
+}
+
+
+//mainSelecter and iterator functions
 export function select_hiragana(){
     selectorIterator = 0;
 }
@@ -60,6 +78,7 @@ export function iterator_reset(){
     iterator = 0;
 }
 
+//display function
 export function displayInfo(){
     console.log(`display call`);
     document.getElementById("characterImg").src = imgAddon+mainSelector.objDictionary[selectorIterator].dictionaryObjData[iterator].imgSrc;
@@ -67,6 +86,15 @@ export function displayInfo(){
     document.getElementById("pronunciation").innerHTML = mainSelector.objDictionary[selectorIterator].dictionaryObjData[iterator].pronunciation;
     document.getElementById("notes").innerHTML = mainSelector.objDictionary[selectorIterator].dictionaryObjData[iterator].notes;
 }
+
+export function toggleOffInfo(){
+    document.getElementById("text_content").style.display = "none";
+}
+export function toggleOnInfo(){
+    document.getElementById("text_content").style.display = "flex";
+}
+
+//init function
 export async function init(){
     console.log(`init quizLogic.js`);
     mainSelector = new selector();
@@ -91,4 +119,5 @@ export async function init(){
 
 
     displayInfo();
+    toggleOffInfo();
 }

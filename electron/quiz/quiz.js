@@ -8,6 +8,9 @@ import {
     iterator_increment,
     iterator_reset,
     displayInfo,
+    toggleOffInfo,
+    toggleOnInfo,
+    checkAnswer,
 } 
     from "./quizLogic.js"
 
@@ -31,6 +34,13 @@ const submitButton = document.getElementById('submit');
 submitButton.addEventListener('click', async ()=>{
     //submit funcitonality
     //compares data from the text field and compare it with the data from the dicitonary
+
+    let input_romaji = document.getElementById("romaji_answer").value;
+    let input_pronunciation = document.getElementById("pronunciation_answer").value;
+
+    console.log(checkAnswer(input_romaji, input_pronunciation));
+    checkAnswer(input_romaji, input_pronunciation);
+
 });
 
 const backButton = document.getElementById('back');
