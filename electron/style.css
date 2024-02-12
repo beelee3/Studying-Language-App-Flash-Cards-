@@ -114,3 +114,15 @@ img{
     flex-basis: 20%;
     flex-direction: column;
 }
+
+/* quiz js*/
+
+.display_answer_correct{
+    color: green;
+}
+.display_answer_incorrect{
+    color: red;
+}
+.display_answer_reset{
+    color:black;
+}

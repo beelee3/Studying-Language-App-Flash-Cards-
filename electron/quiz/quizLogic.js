@@ -51,6 +51,30 @@ export function checkAnswer(user_input_romanji, user_input_pronunciation){
     return true;
 }
 
+//will affirm is the answer is correct or incorrect
+export function gradeAnswer(answer_boolean){
+    var gradeText = document.getElementById("grade_text")
+    gradeText.style.display = "flex";
+
+    if(answer_boolean){
+        gradeText.className = "display_answer_correct";
+        gradeText.textContent = "correct!"
+    }
+    else{
+        gradeText.className = "display_answer_incorrect";
+        gradeText.textContent = `incorrect! Romaji/Pronunciation: ${mainSelector.objDictionary[selectorIterator].dictionaryObjData[iterator].romaji}/${ mainSelector.objDictionary[selectorIterator].dictionaryObjData[iterator].pronunciation}`
+    }
+
+}
+
+export function hideGradeAnswer(){
+   document.getElementById("grade_text").style.display = "none";
+   document.getElementById("grade_text").className ="display_answer_reset";
+}
+export function showGradeAnswer(){
+   document.getElementById("grade_text").style.display = "flex";
+}
+
 
 //mainSelecter and iterator functions
 export function select_hiragana(){
@@ -97,6 +121,8 @@ export function toggleOnInfo(){
 //init function
 export async function init(){
     console.log(`init quizLogic.js`);
+
+
     mainSelector = new selector();
     console.log(mainSelector);
 
@@ -118,6 +144,7 @@ export async function init(){
     mainSelector.objDictionary.push(objDic_kata);
 
 
+    hideGradeAnswer();
     displayInfo();
     toggleOffInfo();
 }

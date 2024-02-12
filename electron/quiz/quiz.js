@@ -11,6 +11,9 @@ import {
     toggleOffInfo,
     toggleOnInfo,
     checkAnswer,
+    gradeAnswer,
+    hideGradeAnswer,
+    showGradeAnswer,
 } 
     from "./quizLogic.js"
 
@@ -39,20 +42,30 @@ submitButton.addEventListener('click', async ()=>{
     let input_pronunciation = document.getElementById("pronunciation_answer").value;
 
     console.log(checkAnswer(input_romaji, input_pronunciation));
-    checkAnswer(input_romaji, input_pronunciation);
+    var answer_bool = checkAnswer(input_romaji, input_pronunciation);
 
+    gradeAnswer(answer_bool);
+    showGradeAnswer();
+    toggleOnInfo();
 });
 
 const backButton = document.getElementById('back');
 backButton.addEventListener('click', async ()=>{
     iterator_decrement();
     displayInfo();
+
+    hideGradeAnswer();
+    toggleOffInfo();
 });
 
 const nextButton = document.getElementById('next');
 nextButton.addEventListener('click', async ()=>{
     iterator_increment();
     displayInfo();
+
+
+    hideGradeAnswer();
+    toggleOffInfo();
 });
 
 
