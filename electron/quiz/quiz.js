@@ -14,6 +14,7 @@ import {
     gradeAnswer,
     hideGradeAnswer,
     showGradeAnswer,
+    clearText,
 } 
     from "./quizLogic.js"
 
@@ -54,6 +55,7 @@ backButton.addEventListener('click', async ()=>{
     iterator_decrement();
     displayInfo();
 
+    clearText();
     hideGradeAnswer();
     toggleOffInfo();
 });
@@ -64,6 +66,7 @@ nextButton.addEventListener('click', async ()=>{
     displayInfo();
 
 
+    clearText();
     hideGradeAnswer();
     toggleOffInfo();
 });

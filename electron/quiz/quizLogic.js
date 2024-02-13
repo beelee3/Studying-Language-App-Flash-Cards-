@@ -75,6 +75,10 @@ export function showGradeAnswer(){
    document.getElementById("grade_text").style.display = "flex";
 }
 
+export function clearText(){
+    document.getElementById("romaji_answer").value = ` `;
+    document.getElementById("pronunciation_answer").value = ` `;
+}
 
 //mainSelecter and iterator functions
 export function select_hiragana(){
@@ -100,6 +104,10 @@ export function iterator_decrement(){
 
 export function iterator_reset(){
     iterator = 0;
+}
+
+export function random_iterator(){
+    
 }
 
 //display function
