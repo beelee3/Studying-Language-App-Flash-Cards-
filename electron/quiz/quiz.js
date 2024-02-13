@@ -15,6 +15,8 @@ import {
     hideGradeAnswer,
     showGradeAnswer,
     clearText,
+    rngSelection,
+    random_iterator,
 } 
     from "./quizLogic.js"
 
@@ -53,6 +55,16 @@ submitButton.addEventListener('click', async ()=>{
 const backButton = document.getElementById('back');
 backButton.addEventListener('click', async ()=>{
     iterator_decrement();
+    displayInfo();
+
+    clearText();
+    hideGradeAnswer();
+    toggleOffInfo();
+});
+
+const randomButton = document.getElementById('random');
+randomButton.addEventListener('click', async ()=>{
+    random_iterator();
     displayInfo();
 
     clearText();

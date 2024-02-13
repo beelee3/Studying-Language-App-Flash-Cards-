@@ -106,8 +106,17 @@ export function iterator_reset(){
     iterator = 0;
 }
 
+//rng the iterator
 export function random_iterator(){
-    
+    var selectorLength = mainSelector.objDictionary[selectorIterator].dictionaryObjData.length - 1;
+    var randomIterator = Math.floor(Math.random() * selectorLength);
+    iterator = randomIterator;
+    console.log(`iterator: ${iterator}`);
+}
+
+export function rngSelection(){
+    random_iterator();
+    displayInfo();
 }
 
 //display function
