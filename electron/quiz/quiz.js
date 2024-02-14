@@ -43,6 +43,9 @@ submitButton.addEventListener('click', async ()=>{
 
     let input_romaji = document.getElementById("romaji_answer").value;
     let input_pronunciation = document.getElementById("pronunciation_answer").value;
+    
+    input_pronunciation = input_pronunciation.toLowerCase();
+    input_romaji = input_romaji.toLowerCase();
 
     console.log(checkAnswer(input_romaji, input_pronunciation));
     var answer_bool = checkAnswer(input_romaji, input_pronunciation);

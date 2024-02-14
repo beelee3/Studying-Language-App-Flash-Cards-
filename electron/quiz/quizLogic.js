@@ -20,7 +20,7 @@ export class selector{
 }
 
 class objDic{
-    constructor(dictionaryObjData, objType="object type n/a"){
+    constructor(dictionaryObjData = [], objType="object type n/a"){
         this.dictionaryObjData = dictionaryObjData;
         this.objType = objType;
     }
@@ -32,7 +32,23 @@ function parseDicIntoArray(dictionary_to_parse){
     for(var key in dictionary_to_parse){
         dicArr.push(dictionary_to_parse[key]);
     }
-    return dicArr;
+
+    
+    var rngDicArr = [];
+    console.log("parsing rng start, length: ",dicArr.length);
+
+    const max_length = dicArr.length;
+    for(var i = 0; i<max_length; i++){
+        var rngIterator = Math.floor(Math.random() * dicArr.length)
+        var spliced = dicArr.splice(rngIterator,1)
+        rngDicArr.push(spliced[0]);
+        console.log(`rng: ${rngIterator}, dicArr Length: ${dicArr.length} rngDicArr:`, rngDicArr);
+    }
+
+    console.log("parsing rng",rngDicArr);
+    return rngDicArr;
+    
+    //  return dicArr;
 }
 
 //quiz logic
@@ -89,7 +105,7 @@ export function select_katakana(){
 }
 
 export function iterator_increment(){
-    if(iterator <= mainSelector.objDictionary[selectorIterator].dictionaryObjData.length -1){
+    if(iterator < mainSelector.objDictionary[selectorIterator].dictionaryObjData.length -1){
         iterator += 1;
     }
     console.log(`iterator ${iterator}`);
@@ -160,6 +176,8 @@ export async function init(){
     //slot 1
     mainSelector.objDictionary.push(objDic_kata);
 
+
+    console.log(mainSelector);
 
     hideGradeAnswer();
     displayInfo();
