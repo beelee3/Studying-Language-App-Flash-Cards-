@@ -53,8 +53,8 @@ function parseDicIntoArray(dictionary_to_parse){
 
 //quiz logic
 export function checkAnswer(user_input_romanji, user_input_pronunciation){
-    user_input_pronunciation = String(user_input_pronunciation).replace(" ","");
-    user_input_romanji = String(user_input_romanji).replace(" ","");
+    user_input_pronunciation = String(user_input_pronunciation).replaceAll(" ","").toLowerCase();
+    user_input_romanji = String(user_input_romanji).replaceAll(" ","").toLowerCase();
 
     if(user_input_pronunciation != mainSelector.objDictionary[selectorIterator].dictionaryObjData[iterator].pronunciation
         || 

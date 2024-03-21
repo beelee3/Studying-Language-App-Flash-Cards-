@@ -65,15 +65,15 @@ backButton.addEventListener('click', async ()=>{
     toggleOffInfo();
 });
 
-const randomButton = document.getElementById('random');
-randomButton.addEventListener('click', async ()=>{
-    random_iterator();
-    displayInfo();
+// const randomButton = document.getElementById('random');
+// randomButton.addEventListener('click', async ()=>{
+//     random_iterator();
+//     displayInfo();
 
-    clearText();
-    hideGradeAnswer();
-    toggleOffInfo();
-});
+//     clearText();
+//     hideGradeAnswer();
+//     toggleOffInfo();
+// });
 
 const nextButton = document.getElementById('next');
 nextButton.addEventListener('click', async ()=>{
