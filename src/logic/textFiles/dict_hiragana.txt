@@ -1,0 +1,289 @@
+{
+  "romaji": "a",
+  "pronunciation": "a",
+  "type": "hiragana",
+  "imgSrc": "./src/pictures/hiragana/a-a-h.png",
+  "notes": "fuck your self"
+}--{
+  "romaji": "chi",
+  "pronunciation": "chi",
+  "type": "hiragana",
+  "imgSrc": "./src/pictures/hiragana/chi-chi-h.png",
+  "notes": "n/a"
+}--{
+  "romaji": "e",
+  "pronunciation": "e",
+  "type": "hiragana",
+  "imgSrc": "./src/pictures/hiragana/e-e-h.png",
+  "notes": "n/a"
+}--{
+  "romaji": "fu",
+  "pronunciation": "fu",
+  "type": "hiragana",
+  "imgSrc": "./src/pictures/hiragana/fu-fu-h.png",
+  "notes": "n/a"
+}--{
+  "romaji": "ha",
+  "pronunciation": "ha",
+  "type": "hiragana",
+  "imgSrc": "./src/pictures/hiragana/ha-ha-h.png",
+  "notes": "n/a"
+}--{
+  "romaji": "he",
+  "pronunciation": "he",
+  "type": "hiragana",
+  "imgSrc": "./src/pictures/hiragana/he-he-h.png",
+  "notes": "n/a"
+}--{
+  "romaji": "hi",
+  "pronunciation": "hi",
+  "type": "hiragana",
+  "imgSrc": "./src/pictures/hiragana/hi-hi-h.png",
+  "notes": "n/a"
+}--{
+  "romaji": "ho",
+  "pronunciation": "ho",
+  "type": "hiragana",
+  "imgSrc": "./src/pictures/hiragana/ho-ho-h.png",
+  "notes": "n/a"
+}--{
+  "romaji": "i",
+  "pronunciation": "i",
+  "type": "hiragana",
+  "imgSrc": "./src/pictures/hiragana/i-i-h.png",
+  "notes": "n/a"
+}--{
+  "romaji": "ka",
+  "pronunciation": "ka",
+  "type": "hiragana",
+  "imgSrc": "./src/pictures/hiragana/ka-ka-h.png",
+  "notes": "n/a"
+}--{
+  "romaji": "ke",
+  "pronunciation": "ke",
+  "type": "hiragana",
+  "imgSrc": "./src/pictures/hiragana/ke-ke-h.png",
+  "notes": "n/a"
+}--{
+  "romaji": "ki",
+  "pronunciation": "ki",
+  "type": "hiragana",
+  "imgSrc": "./src/pictures/hiragana/ki-ki-h.png",
+  "notes": "n/a"
+}--{
+  "romaji": "ko",
+  "pronunciation": "ko",
+  "type": "hiragana",
+  "imgSrc": "./src/pictures/hiragana/ko-ko-h.png",
+  "notes": "n/a"
+}--{
+  "romaji": "ku",
+  "pronunciation": "ku",
+  "type": "hiragana",
+  "imgSrc": "./src/pictures/hiragana/ku-ku-h.png",
+  "notes": "n/a"
+}--{
+  "romaji": "ma",
+  "pronunciation": "ma",
+  "type": "hiragana",
+  "imgSrc": "./src/pictures/hiragana/ma-ma-h.png",
+  "notes": "n/a"
+}--{
+  "romaji": "me",
+  "pronunciation": "me",
+  "type": "hiragana",
+  "imgSrc": "./src/pictures/hiragana/me-me-h.png",
+  "notes": "n/a"
+}--{
+  "romaji": "mi",
+  "pronunciation": "mi",
+  "type": "hiragana",
+  "imgSrc": "./src/pictures/hiragana/mi-mi-h.png",
+  "notes": "n/a"
+}--{
+  "romaji": "mo",
+  "pronunciation": "mo",
+  "type": "hiragana",
+  "imgSrc": "./src/pictures/hiragana/mo-mo-h.png",
+  "notes": "n/a"
+}--{
+  "romaji": "mu",
+  "pronunciation": "mu",
+  "type": "hiragana",
+  "imgSrc": "./src/pictures/hiragana/mu-mu-h.png",
+  "notes": "n/a"
+}--{
+  "romaji": "n",
+  "pronunciation": "n",
+  "type": "hiragana",
+  "imgSrc": "./src/pictures/hiragana/n-n-h.png",
+  "notes": "n/a"
+}--{
+  "romaji": "na",
+  "pronunciation": "na",
+  "type": "hiragana",
+  "imgSrc": "./src/pictures/hiragana/na-na-h.png",
+  "notes": "n/a"
+}--{
+  "romaji": "ne",
+  "pronunciation": "ne",
+  "type": "hiragana",
+  "imgSrc": "./src/pictures/hiragana/ne-ne-h.png",
+  "notes": "n/a"
+}--{
+  "romaji": "ni",
+  "pronunciation": "ni",
+  "type": "hiragana",
+  "imgSrc": "./src/pictures/hiragana/ni-ni-h.png",
+  "notes": "n/a"
+}--{
+  "romaji": "no",
+  "pronunciation": "no",
+  "type": "hiragana",
+  "imgSrc": "./src/pictures/hiragana/no-no-h.png",
+  "notes": "n/a"
+}--{
+  "romaji": "nu",
+  "pronunciation": "nu",
+  "type": "hiragana",
+  "imgSrc": "./src/pictures/hiragana/nu-nu-h.png",
+  "notes": "n/a"
+}--{
+  "romaji": "o",
+  "pronunciation": "o",
+  "type": "hiragana",
+  "imgSrc": "./src/pictures/hiragana/o-o-h.png",
+  "notes": "n/a"
+}--{
+  "romaji": "ra",
+  "pronunciation": "ra",
+  "type": "hiragana",
+  "imgSrc": "./src/pictures/hiragana/ra-ra-h.png",
+  "notes": "n/a"
+}--{
+  "romaji": "re",
+  "pronunciation": "re",
+  "type": "hiragana",
+  "imgSrc": "./src/pictures/hiragana/re-re-h.png",
+  "notes": "n/a"
+}--{
+  "romaji": "ri",
+  "pronunciation": "ri",
+  "type": "hiragana",
+  "imgSrc": "./src/pictures/hiragana/ri-ri-h.png",
+  "notes": "n/a"
+}--{
+  "romaji": "ro",
+  "pronunciation": "ro",
+  "type": "hiragana",
+  "imgSrc": "./src/pictures/hiragana/ro-ro-h.png",
+  "notes": "n/a"
+}--{
+  "romaji": "ru",
+  "pronunciation": "ru",
+  "type": "hiragana",
+  "imgSrc": "./src/pictures/hiragana/ru-ru-h.png",
+  "notes": "n/a"
+}--{
+  "romaji": "sa",
+  "pronunciation": "sa",
+  "type": "hiragana",
+  "imgSrc": "./src/pictures/hiragana/sa-sa-h.png",
+  "notes": "n/a"
+}--{
+  "romaji": "se",
+  "pronunciation": "se",
+  "type": "hiragana",
+  "imgSrc": "./src/pictures/hiragana/se-se-h.png",
+  "notes": "n/a"
+}--{
+  "romaji": "shi",
+  "pronunciation": "shi",
+  "type": "hiragana",
+  "imgSrc": "./src/pictures/hiragana/shi-shi-h.png",
+  "notes": "n/a"
+}--{
+  "romaji": "so",
+  "pronunciation": "so",
+  "type": "hiragana",
+  "imgSrc": "./src/pictures/hiragana/so-so-h.png",
+  "notes": "n/a"
+}--{
+  "romaji": "su",
+  "pronunciation": "su",
+  "type": "hiragana",
+  "imgSrc": "./src/pictures/hiragana/su-su-h.png",
+  "notes": "n/a"
+}--{
+  "romaji": "ta",
+  "pronunciation": "ta",
+  "type": "hiragana",
+  "imgSrc": "./src/pictures/hiragana/ta-ta-h.png",
+  "notes": "n/a"
+}--{
+  "romaji": "te",
+  "pronunciation": "te",
+  "type": "hiragana",
+  "imgSrc": "./src/pictures/hiragana/te-te-h.png",
+  "notes": "n/a"
+}--{
+  "romaji": "to",
+  "pronunciation": "to",
+  "type": "hiragana",
+  "imgSrc": "./src/pictures/hiragana/to-to-h.png",
+  "notes": "n/a"
+}--{
+  "romaji": "tsu",
+  "pronunciation": "tsu",
+  "type": "hiragana",
+  "imgSrc": "./src/pictures/hiragana/tsu-tsu-h.png",
+  "notes": "n/a"
+}--{
+  "romaji": "u",
+  "pronunciation": "u",
+  "type": "hiragana",
+  "imgSrc": "./src/pictures/hiragana/u-u-h.png",
+  "notes": "n/a"
+}--{
+  "romaji": "wa",
+  "pronunciation": "wa",
+  "type": "hiragana",
+  "imgSrc": "./src/pictures/hiragana/wa-wa-h.png",
+  "notes": "n/a"
+}--{
+  "romaji": "we",
+  "pronunciation": "we",
+  "type": "hiragana",
+  "imgSrc": "./src/pictures/hiragana/we-we-h.png",
+  "notes": "n/a"
+}--{
+  "romaji": "wi",
+  "pronunciation": "wi",
+  "type": "hiragana",
+  "imgSrc": "./src/pictures/hiragana/wi-wi-h.png",
+  "notes": "n/a"
+}--{
+  "romaji": "wo",
+  "pronunciation": "o",
+  "type": "hiragana",
+  "imgSrc": "./src/pictures/hiragana/wo-o-h.png",
+  "notes": "n/a"
+}--{
+  "romaji": "ya",
+  "pronunciation": "ya",
+  "type": "hiragana",
+  "imgSrc": "./src/pictures/hiragana/ya-ya-h.png",
+  "notes": "n/a"
+}--{
+  "romaji": "yo",
+  "pronunciation": "yo",
+  "type": "hiragana",
+  "imgSrc": "./src/pictures/hiragana/yo-yo-h.png",
+  "notes": "n/a"
+}--{
+  "romaji": "yu",
+  "pronunciation": "yu",
+  "type": "hiragana",
+  "imgSrc": "./src/pictures/hiragana/yu-yu-h.png",
+  "notes": "n/a"
+}
