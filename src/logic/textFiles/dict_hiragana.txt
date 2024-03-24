@@ -3,7 +3,7 @@
   "pronunciation": "a",
   "type": "hiragana",
   "imgSrc": "./src/pictures/hiragana/a-a-h.png",
-  "notes": "fuck your self"
+  "notes": "n/a"
 }--{
   "romaji": "chi",
   "pronunciation": "chi",
