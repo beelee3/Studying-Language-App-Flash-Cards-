@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../style.css">
+    
+</head>
+<body>
+    <div class="centerH outerEdge">
+        <h1> Chart</h1>      
+    </div>
+
+    <div class="centerH btnBox">
+        <!-- <a href="../index.html">
+            <button id="mainMenu">Main Menu</button>
+        </a> -->
+
+        <button class="mainMenu" id="aToggle">A</button>
+        <button class="mainMenu" id="iToggle">I</button>
+        <button class="mainMenu" id="uToggle">U</button>
+        <button class="mainMenu" id="eToggle">E</button>
+        <button class="mainMenu" id="oToggle">O</button>
+        <button class="mainMenu" id="show">Show</button>
+        
+    </div>
+
+
+    <h2 class="centerH">Hiragana</h2>
+    <div class="container" id="dHira">
+
+        <div class="centerV" id="dCharHira">
+            <!-- <img src="../../src/pictures/hiragana/a-a-h.png" id="imgChart"> -->
+            <img src="../../src/pictures/hiragana/a-a-h.png" id="imgChart_dHira">
+            <p>
+                Romaji:
+                <!-- <div class="romaji" id="dRomajiHira">romaji</div> -->
+                <div class="romaji" id="Romaji_dHira">romaji</div>
+            </p>
+            <p>
+                Pronunciation:
+                <!-- <div class="pronunciation" id="dPronunciationHira">pronunciation</div> -->
+                <div class="pronunciation" id="Pronunciation_dHira">pronunciation</div>
+                
+            </p>
+
+            <p>
+                Notes: 
+                <textarea class="notes" id="Notes_dHira" rows="12" cols="30"> </textarea>
+                <button id="submitEdit_dHira">Submit Edit</button>
+            </p>
+        </div>
+            
+        <!-- <div class="centerV centerH">
+            <img src="../../src/pictures/hiragana/a-a-h.png" id="imgChart">
+            <p >
+                Romaji: <div class="dRomaji"> X </div> 
+                <br>
+                Pronunciation: <div class="dPronun"> X </div> 
+                <br>
+                Notes: <div class="dNotes"> X </div> 
+            </p>
+        </div> -->
+
+        <!-- <div class="centerV centerH ">
+            <img src="../../src/pictures/hiragana/a-a-h.png" id="imgChart">
+
+            <div>
+                <p>
+                    Romaji: <span class="dRomaji"> X </span>
+                </p>
+                <p>
+                    Pronunciation: <span class="dPronun"> X </span>
+                </p>
+                <p>
+                    Notes: <span class="dNotes" style="font-weight: 100px;"> hello there guys </span>
+                </p>
+            </div>
+
+        </div> -->
+   
+    </div>
+
+
+    
+
+    
+    
+
+    <h2 class="centerH">Katakana</h2>
+    <div class="container" id="dKata">
+        
+        <div class="centerV" id="dCharKata">
+            <img src="../../src/pictures/hiragana/a-a-h.png" id="imgChart_dKata">
+            <p>
+                Romaji:
+                <div class="romaji" id="Romaji_dKata">romaji</div>
+            </p>
+            <p>
+                Pronunciation:
+                <div class="pronunciation" id="Pronunciation_dKata">pronunciation</div>
+                
+            </p>
+
+            <p>
+                Notes: 
+                <textarea class="notes" id="Notes_dKata" rows="12" cols="30"> </textarea>
+                <button id="submitEdit_dKata">Submit Edit</button>
+            </p>
+        </div>
+
+    </div>
+
+
+    
+
+    <!-- <script src="index.js"></script> -->
+    <script type="module" src="chart.js"></script>
+</body>
+</html>

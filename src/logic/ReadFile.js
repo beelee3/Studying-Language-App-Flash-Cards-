@@ -1,8 +1,10 @@
-import fs from "fs";
+// import fs from "fs";
+const fs = require('fs');
 
+const stringSplitter = `--`;
 
 // Recursive function to scan and get files
-export function scanFiles(dir, files = []) {
+function scanFiles(dir, files = []) {
     const fileList = fs.readdirSync(dir)
     for (const file of fileList) {
       files.push(file);
@@ -12,7 +14,7 @@ export function scanFiles(dir, files = []) {
   }
 
 
-export function breakTextFileIntoLines(filePath){
+function breakTextFileIntoLines(filePath){
   if(doesFileExist(filePath)==false){
     return false;
   }
@@ -26,7 +28,7 @@ export function breakTextFileIntoLines(filePath){
 
 
 //returns an array of keys from the text file
-export function getKeysFromTextFile(filePath){
+function getKeysFromTextFile(filePath){
     const arr = breakTextFileIntoLines(filePath);
     var keys = [];
     for(var i = 0; i < arr.length; i++){
@@ -37,79 +39,53 @@ export function getKeysFromTextFile(filePath){
     return keys;
 }
 
-//returns array of dictionary data
-export function getDictFromTextFile(dictFilePath){
-  const dicData = breakTextFileIntoLines(dictFilePath);
-  return dicData;
-}
-
 //returns array of init data
-export function getInitFromTextFile(initFilePath){
-  const initData = breakTextFileIntoLines(initFilePath);
-  return initData;
+function getInitFromTextFile(initFilePath){
+  var stringFormat = fs.readFileSync(initFilePath,'utf-8');
+  return stringFormat;
 }
-
-
-//returns array of keys from the img src
-export function getKeysFromImgSrc(imgFilePath){
-    var arr = scanFiles(imgFilePath);
-    var keys = [];
-    for(var i = 0; i < arr.length; i++){
-      var extract = [];
-      extract = arr[i].split("-");
-      keys.push(extract[0]);
-    }
-    return keys;
-}
-
-
 
 //grabs formatted names from images and produces it into an array format
-export function getDictFromImage(imgFilePath){
+function getDictFromImage(imgFilePath){
     var arr = scanFiles(imgFilePath);
-    console.log(`scanned dict data: ${arr}`);
+    // console.log(`scanned dict data: ${arr}`);
 
     var dictData = [];
     for(var i = 0; i < arr.length; i++){
       dictData.push(arr[i].replaceAll("-"," ").replaceAll(".png","")); 
     }
-    console.log(`scanned dict data Array: ${dictData}`);
+    // console.log(`scanned dict data Array: ${dictData}`);
     return dictData;
 }
 
-export function doesFileExist(filePath){
+function doesFileExist(filePath){
     if(fs.existsSync(filePath)){
         return true;
     }
     return false;
 }
 
-export function searchFirstWordInEachLineTextFile(filePath, word){
-    const arr = breakTextFileIntoLines(filePath);
-    lines = [];
-    for(let i = 0; i < arr.length; i++){
-      var extract = [];
-      extract = arr[i].split(" ");
-      if(extract[0] == word){
-        console.log(`${word} exists in the file!`);
-        return true;
-      }
-    }
+/////////////////new stuff
+
+
+//splits the json text and parses it, and returns an array of objects
+function splitJsonIntoCharacterArray(filePath){
+  if(doesFileExist(filePath)==false){
     return false;
+  }
+  console.log(``)
+  var jsonString = fs.readFileSync(filePath,'utf-8',(err)=>{
+    if(err){
+      console.log(err)
+    }
+  }).split(stringSplitter);
+
+  let jsonArray = []
+  for(let i in jsonString){
+    jsonArray.push(JSON.parse(jsonString[i]))
+  }
+
+  return jsonArray;
 }
 
-//searches for a phrase in the text file 
-  //ex. "initFromImg true"
-export function searchEachLineTextFile(filePath, phrase){
-    if(doesFileExist(filePath)==false){
-      return false;
-    }
-    const arr = breakTextFileIntoLines(filePath);
-    for(let i = 0; i < arr.length; i++){
-      if(arr[i] == phrase){
-        console.log(`${phrase} exists in the file!`);
-        return true;
-      }
-    }
-    return false;
-}
+module.exports = {scanFiles,breakTextFileIntoLines,getKeysFromTextFile,getInitFromTextFile,getDictFromImage,doesFileExist,splitJsonIntoCharacterArray};

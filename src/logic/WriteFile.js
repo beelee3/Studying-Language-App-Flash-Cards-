@@ -1,9 +1,12 @@
-import fs from "fs";
-import { getFileSize } from "./getFileSize.js";
+// import fs from "fs";
+const fs = require('fs');
+// import { getFileSize } from "./getFileSize.js";
+const {getFileSize} = require('./getFileSizeCount');
 
+const stringSplitter = `--`
 
 //write to file if it doesnt exist/is empty  or append to the file
-export function writeToTextFile(filePath, stringFormat="this is dummy text"){
+function writeToTextFile(filePath, stringFormat="this is dummy text"){
     //if the amount returned is 0, writeFileSync
     if(getFileSize(filePath) == 0){
         fs.writeFileSync(filePath,stringFormat,(err) =>{
@@ -19,7 +22,7 @@ export function writeToTextFile(filePath, stringFormat="this is dummy text"){
     }
 }
 
-export function writeToFile(filePath, stringFormat="this is dummy text"){
+function writeToFile(filePath, stringFormat="this is dummy text"){
     fs.writeFileSync(filePath,stringFormat,(err) =>{
         //in case of an error throw err.
         if(err) throw err;
@@ -27,3 +30,52 @@ export function writeToFile(filePath, stringFormat="this is dummy text"){
 
 }
 
+
+//send in the json stringify'd objects into oldString/newString
+function replaceTextInFile(filePath, oldString="old text", newString="new string"){
+    oldString = oldString.slice(1, oldString.length-1);
+    newString = newString.slice(1,newString.length-1);
+
+    console.log(`replace text oldString: `,oldString);
+    console.log(`replace text newString: `,newString);
+
+    fs.readFile(filePath, 'utf-8', (err, data)=>{
+        var formatted = data.replace(oldString, newString);
+
+        fs.writeFile(filePath, formatted, 'utf-8', (err)=>{
+            if (err) console.log(err);
+        });
+    });
+
+}
+
+function stringifyObject(obj){
+    return JSON.stringify(obj,null,2);
+}
+
+
+
+
+///////////////new stuff
+function writeObjectToFile(filePath, stringFormat="this is dummy text"){
+    //if the amount returned is 0, writeFileSync
+    if(getFileSize(filePath) == 0){
+        fs.writeFileSync(filePath,stringFormat,(err) =>{
+            //in case of an error throw err.
+            if(err) throw err;
+        });
+    }
+    //if the file has characters written in it, then append
+    else {
+        fs.appendFileSync(filePath, stringSplitter+stringFormat, (err)=>{
+            if(err) throw err;
+        });
+    }
+}
+
+module.exports = {writeToTextFile,
+    writeToFile,
+    writeObjectToFile,
+    replaceTextInFile,
+    stringifyObject,
+};

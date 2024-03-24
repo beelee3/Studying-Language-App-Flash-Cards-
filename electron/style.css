@@ -1,0 +1,128 @@
+/* p{
+    border: 1px solid black;
+}
+div{
+    border: 1px solid red;
+}
+b{
+    text-align: center;
+} */
+
+body{
+    background-color: #FDF7E4;
+}
+.container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    border: 1px solid navajowhite ;
+    background-color: beige;
+}
+
+#romaji, #pronunciation, #notes{
+    
+    background-color: beige;
+}
+#content > *{
+    font-size: 25px;
+    background-color: #DED0B6;
+}
+#content {
+    border: 1px solid navajowhite;
+}
+
+.centerH{
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.centerH > button, img, #notes {
+    border: 1px solid navajowhite;
+}
+
+.centerV{
+    display: flex;
+    align-items: center;
+    margin: 5px;
+    padding: 5px;
+}
+
+.btnBox{
+    margin: 10px;
+}
+
+.outerEdge{
+    background-color: beige;
+}
+img{
+    height: 20rem;
+    width: 20rem;
+    border: 2px solid #BBAB8C;
+}
+
+.menuButton{
+    width: 150px;
+    height: 50px;
+}
+
+#imgChart{
+    height: 50px;
+    width: 50px;
+}
+
+
+
+/* chart js */
+.container > p{
+    flex-basis: 30%;
+    border: 1px solid black;
+}
+.container > div{
+    flex-basis: 20%;
+    border: 1px solid black;
+}
+
+#dHira> button, #dKata > button{
+    flex-basis: 20%;
+    border: 1px solid black;
+}
+
+.break {
+    flex-basis: 100%;
+    height: 0;
+}
+
+.romaji, .pronunciation, .notes, 
+.dRomaji, .dPronun, .dNotes, .boldThis{
+    font-weight: bold;
+    background-color: beige;
+}
+
+#dCharHira, #dCharKata{
+    margin: 25px;
+    padding: 25px;
+    flex-basis: 30%;
+}
+
+#dCharHira > p, #dCharKata > p{
+    margin: 10px;
+}
+
+.characterContainer{
+    display: flex;
+    flex-basis: 20%;
+    flex-direction: column;
+}
+
+/* quiz js*/
+
+.display_answer_correct{
+    color: green;
+}
+.display_answer_incorrect{
+    color: red;
+}
+.display_answer_reset{
+    color:black;
+}

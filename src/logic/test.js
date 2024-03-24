@@ -1,37 +1,31 @@
-import {Dictionary} from "./Dictionary.js";
+// import {Dictionary} from "./Dictionary.js";
+const Dictionary = require('./Dictionary');
+
 
 var dicHira = new Dictionary("hiragana");
-// dicHira.add("ka","ka","h");
-// dicHira.display();
-// dicHira.readDictFromImage();
+var dicKata = new Dictionary("katakana");
 
-console.log("//////////////////");
-
-var dictKata = new Dictionary("katakana");
-// dictKata.add("ka","ka","h");
-// dictKata.display();
-// dictKata.readDictFromImage();
 
 dicHira.initialize();
-dictKata.initialize();
+dicHira.display();
+
+dicKata.initialize();
+dicKata.display();
+
+console.log(dicKata.getKeyArr());
+console.log(dicHira.getKeyArr());
+
+dicKata.randomSelectKey();
+dicHira.randomSelectKey();
 
 
-//run this as the init
-// dicHira.setDictFromImgSrc();
-// dictKata.setDictFromImgSrc();
+console.log(`//////////`);
+let dicH = dicHira.getDictionary();
 
+console.log(`new Rng key select:${dicH[ dicHira.randomSelectKey()].romaji}`);
+console.log(`print dictionary `,dicH);
 
-// dicHira.setDictFromTextFile();
-// dictKata.setDictFromTextFile();
+// dicHira.randomSelectKey();
+// dicKata.randomSelectKey();
 
-
-// dicHira.writeDictToFile();
-// dictKata.writeDictToFile();
-
-// dicHira.writeKeysToFile();
-// dictKata.writeKeysToFile();
-
-
-// dicHira.readDictFromFile();
-// dictKata.readDictFromFile();
 

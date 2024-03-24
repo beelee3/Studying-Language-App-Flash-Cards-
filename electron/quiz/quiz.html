@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../style.css">
+    
+</head>
+<body>
+    <div class="centerH outerEdge">
+        <h1> Quiz</h1>      
+    </div>
+
+    <div class="centerH">
+        <button id="hiragana_quiz">
+            Hiragana
+        </button>
+        <button id="katakana_quiz">
+            Katakana
+        </button>
+    </div>
+
+    <div  class="centerH">
+        <img src="" id="characterImg">
+    </div>
+
+    <div class="centerH" id="text_content">
+        <div>
+            <div  class="centerH">
+                Romaji:         <div id="romaji"> X</div>
+            </div>
+            <div class="centerH">
+                Pronunciation:  <div id="pronunciation"> X</div>
+            </div>
+            <div class="centerH">
+                Notes:          <div id="notes"> X</div>
+            </div>
+            <div  id="grade_text">
+                Correct/Incorrect
+            </div>
+        </div>
+    </div>
+
+    <!-- <div class="centerH">
+        <div  id="grade_text">
+            Correct/Incorrect
+        </div>
+    </div> -->
+
+    <div class="centerH">
+        <div>
+            Romaji: <input type="text" id="romaji_answer" size="5">
+         </div>
+         <div>
+            Pronunciation: <input type="text" id="pronunciation_answer" size="5">
+         </div>
+    </div>
+    
+
+
+    <div class="centerH btnBox">
+        <button id="back">
+            Back
+        </button>
+        
+        <!-- <button id="random">
+            Random
+        </button> -->
+
+        <button id="next">
+            Next
+        </button>
+    </div>
+
+    <div class="centerH">
+        <button id="submit">
+            Submit
+        </button>
+    </div>
+
+    <div class="centerH btnBox">
+        <a href="../index.html">
+            <button id="mainMenu">Main Menu</button>
+        </a>
+        <button id="chart">Chart</button>
+    </div>
+    
+
+    <!-- <script src="index.js"></script> -->
+    <script type="module" src="quiz.js"></script>
+</body>
+</html>
