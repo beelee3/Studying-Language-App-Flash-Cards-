@@ -1,0 +1,6 @@
+make sure that 
+
+        ./src/logic/init
+        ./src/logic/textFiles
+
+exist in the folder structure

@@ -1,10 +1,5 @@
-<<<<<<< HEAD
-./src/pictures/*
-./src/logic/textFiles/*
-node_modules/*
-=======
 /src/pictures/*
 /src/logic/textFiles/*
 /src/logic/init/*
 /node_modules/*
->>>>>>> 2.7
+
