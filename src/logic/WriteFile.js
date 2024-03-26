@@ -73,9 +73,24 @@ function writeObjectToFile(filePath, stringFormat="this is dummy text"){
     }
 }
 
+//create folder
+function createFolder(filePath){
+    try{
+        if(!fs.existsSync(filePath)){
+            fs.mkdirSync(filePath)
+        }
+    }
+    catch(err){
+        console.log(err);
+
+    }
+}
+
+
 module.exports = {writeToTextFile,
     writeToFile,
     writeObjectToFile,
     replaceTextInFile,
     stringifyObject,
+    createFolder,
 };

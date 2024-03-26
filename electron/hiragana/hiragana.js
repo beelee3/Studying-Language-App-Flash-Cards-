@@ -41,21 +41,31 @@ chartButton.addEventListener('click', async ()=>{
 
 function displayInfo(){
     console.log(`display call`);
-    document.getElementById("characterImg").src = imgAddon+dic[dicKeyArr[iterator]].imgSrc;
-    document.getElementById("romaji").innerHTML = dic[dicKeyArr[iterator]].romaji;
-    document.getElementById("pronunciation").innerHTML = dic[dicKeyArr[iterator]].pronunciation;
-    document.getElementById("notes").innerHTML = dic[dicKeyArr[iterator]].notes;
+    try{
+        document.getElementById("characterImg").src = imgAddon+dic[dicKeyArr[iterator]].imgSrc;
+        document.getElementById("romaji").innerHTML = dic[dicKeyArr[iterator]].romaji;
+        document.getElementById("pronunciation").innerHTML = dic[dicKeyArr[iterator]].pronunciation;
+        document.getElementById("notes").innerHTML = dic[dicKeyArr[iterator]].notes;
+    }
+    catch(err){
+        console.log(err);
+    }
+
 }
 
  async function init(){
    console.log(`init hiragana.js`); 
-   dicKeyArr = await window.electronApi.getDictHiraKeys();
+   
    dic =  await window.electronApi.getDictHira();
+   dicKeyArr = await window.electronApi.getDictHiraKeys();
 
-   console.log(dic[dicKeyArr[iterator]].imgSrc);
 
    console.log(dic);
    console.log(dicKeyArr);
+   displayInfo();
+   console.log(dic[dicKeyArr[iterator]].imgSrc);
+
+
 }
 
 
