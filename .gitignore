@@ -1,6 +1,3 @@
 /node_modules/*
-
-# # /src/pictures/*
-
-# !/src/logic/textFiles/
-# !/src/logic/init/
+./src/logic/textFiles/*
+./src/logic/init/*

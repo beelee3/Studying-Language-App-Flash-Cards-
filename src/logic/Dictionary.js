@@ -13,7 +13,8 @@ const {
     writeToTextFile, 
     writeObjectToFile, 
     stringifyObject,
-    replaceTextInFile
+    replaceTextInFile,
+    createFolder,
 } = require('./WriteFile');
 
 
@@ -48,6 +49,8 @@ class Dictionary{
         // this.fileName = `dict${this.type}.txt`;
         this.fileName = `dict_${this.type}.txt`;
         this.filePath = `./src/logic/textFiles/${this.fileName}`;
+        // this.filePath = `./src/logic/testFolder/${this.fileName}`;
+        this.textFilefolderPath = `./src/logic/textFiles`;
         
         // this.keyName = `KEY${this.type}.txt`;
         this.keyName = `KEY_${this.type}.txt`;
@@ -63,6 +66,7 @@ class Dictionary{
 
         this.initName=`${this.type}_init.txt`;
         this.initPath = `./src/logic/init/${this.initName}`;
+        this.initFolderPath = `./src/logic/init`;
         this.init = {
             "initFromImg": true,
         }
@@ -251,6 +255,8 @@ class Dictionary{
     initialize(){
         // console.log(`//////////////////////`);
         // console.log(`start`,this.init);
+        createFolder(this.textFilefolderPath);
+        createFolder(this.initFolderPath);
         this.readInit();
         this.writeInit();
 
@@ -261,6 +267,7 @@ class Dictionary{
             this.init.initFromImg = false;
             this.writeInit();
             // console.log(`init from image complete`);
+
         }
         else{
             // this.setDictFromTextFile();
