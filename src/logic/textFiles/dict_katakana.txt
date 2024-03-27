@@ -22,4 +22,22 @@
   "type": "katakana",
   "imgSrc": "./src/pictures/katakana/shi-shi-k.png",
   "notes": "n/a"
+}--{
+  "romaji": "ka",
+  "pronunciation": "ka",
+  "type": "katakana",
+  "imgSrc": "./src/pictures/katakana/ka-ka-k.png",
+  "notes": "n/a"
+}--{
+  "romaji": "ke",
+  "pronunciation": "ke",
+  "type": "katakana",
+  "imgSrc": "./src/pictures/katakana/ke-ke-k.png",
+  "notes": "n/a"
+}--{
+  "romaji": "ku",
+  "pronunciation": "ku",
+  "type": "katakana",
+  "imgSrc": "./src/pictures/katakana/ku-ku-k.png",
+  "notes": "n/a"
 }

@@ -5,11 +5,11 @@ const imgAddon = `../.`
 
 const decrementButton = document.getElementById("back");
 decrementButton.addEventListener('click', async ()=>{
-    if(iterator-1 >= 0)
+    if(iterator-1 > 0)
         iterator--;
 
     displayInfo();
-    console.log(`--`);
+    console.log(`${iterator}--`);
 });
     
 
@@ -23,11 +23,11 @@ randomButton.addEventListener('click', async ()=>{
 
 const incrementButton = document.getElementById("next");
 incrementButton.addEventListener('click', async ()=>{
-    if(iterator+1 < dicKeyArr.length)
+    if(iterator < dicKeyArr.length)
         iterator++;
 
     displayInfo();
-    console.log(`++`);
+    console.log(`${iterator}++`);
 });
 
 

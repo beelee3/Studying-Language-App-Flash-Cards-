@@ -86,6 +86,12 @@ nextButton.addEventListener('click', async ()=>{
     toggleOffInfo();
 });
 
+const chartButton = document.getElementById('chart');
+chartButton.addEventListener('click', async ()=>{
+    window.electronApi.getChart();
+});
+
+
 
 
 
